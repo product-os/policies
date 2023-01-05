@@ -1,0 +1,52 @@
+policy:
+  approval:
+    - or:
+        - reviewers have approved
+        # - pull request has the no-review label
+        
+approval_rules:
+  - name: reviewers have approved
+    requires:
+      # "count" is the number of required approvals. The default is 0, meaning no
+      # approval is necessary.
+      count: 1
+
+      # A user must have at least the minimum permission in this list for their
+      # approval to count for this rule. Valid permissions are "admin", "maintain",
+      # "write", "triage", and "read".
+      permissions: ["write"]
+
+    methods:
+      # If a comment contains a string in this list, it counts as approval. Use
+      # the "comment_patterns" option if you want to match full comments. The
+      # default values are shown.
+      # comments:
+      #   - ":+1:"
+      #   - "👍"
+
+      # If a comment matches a regular expression in this list, it counts as
+      # approval. Defaults to an empty list.
+      #
+      # Note: Double-quote strings must escape backslashes while single/plain do not.
+      # See the Notes on YAML Syntax section of this README for more information.
+      comment_patterns:
+        - "^(@balena-ci )?I self-certify!$"
+
+      # If true, GitHub reviews can be used for approval. All GitHub review approvals
+      # will be accepted as approval candidates. Default is true.
+      github_review: true
+
+    options:
+      # If true, approvals by the author of a pull request are considered when
+      # calculating the status. False by default.
+      allow_author: true
+
+  # TODO: check who has permissions to add labels before enabling
+  - name: pull request has the no-review label
+    if:
+      has_labels:
+        - "no-review"
+
+    requires:
+      count: 0 # indicates "auto-approval"
+    
