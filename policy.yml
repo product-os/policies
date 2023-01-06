@@ -50,7 +50,7 @@ approval_rules:
       # considered when calculating the status. The pull request author is considered
       # a contributor. If allow_author and allow_contributor would disagree, this option
       # always wins. False by default.
-      allow_contributor: false
+      allow_contributor: true
 
   # TODO: check who has permissions to add labels before enabling
   - name: pull request has the no-review label
