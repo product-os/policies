@@ -4,9 +4,9 @@ Source of truth for [policy-bot](https://github.com/palantir/policy-bot) configu
 
 > `policy-bot` is a [GitHub App](https://developer.github.com/apps/) for enforcing
 approval policies on pull requests. It does this by creating a status check,
-which can be configured as a [required status check][].
+which can be configured as a [required status check](https://help.github.com/articles/enabling-required-status-checks/).
 >
-> While GitHub natively supports [required reviews][], `policy-bot` provides more
+> While GitHub natively supports [required reviews](https://help.github.com/articles/about-required-reviews-for-pull-requests/), `policy-bot` provides more
 complex approval features:
 >
 > - Require reviews from specific users, organizations, or teams

@@ -2,10 +2,45 @@ policy:
   approval:
     - or:
         - reviewers have approved
+        - author has self-certified
         # - pull request has the no-review label
-        
+
 approval_rules:
   - name: reviewers have approved
+    if:
+      # "author_is_only_contributor", when true, is satisfied if all commits in the
+      # pull request are authored by and committed by the user who opened the pull
+      # request. When false, it is satisfied if at least one commit in the pull
+      # request was authored or committed by another user.
+      author_is_only_contributor: false
+
+    requires:
+      # "count" is the number of required approvals. The default is 0, meaning no
+      # approval is necessary.
+      count: 1
+
+      # A user must have at least the minimum permission in this list for their
+      # approval to count for this rule. Valid permissions are "admin", "maintain",
+      # "write", "triage", and "read".
+      permissions: ["write"]
+
+    options:
+      # If true, the approvals of someone who has committed to the pull request are
+      # considered when calculating the status. In this case, pull request author is NOT
+      # considered a contributor. If combined with any combination of allow_author: true
+      # or allow_contributors: true, then the pull request author IS considered when
+      # calculating approval. False by default.
+      allow_non_author_contributor: false
+
+  # TODO: how to only consider comments by author?
+  - name: author has self-certified
+    if:
+      # "author_is_only_contributor", when true, is satisfied if all commits in the
+      # pull request are authored by and committed by the user who opened the pull
+      # request. When false, it is satisfied if at least one commit in the pull
+      # request was authored or committed by another user.
+      author_is_only_contributor: false
+
     requires:
       # "count" is the number of required approvals. The default is 0, meaning no
       # approval is necessary.
@@ -34,7 +69,7 @@ approval_rules:
 
       # If true, GitHub reviews can be used for approval. All GitHub review approvals
       # will be accepted as approval candidates. Default is true.
-      github_review: true
+      github_review: false
 
     options:
       # If true, approvals by the author of a pull request are considered when
@@ -44,9 +79,18 @@ approval_rules:
   # TODO: check who has permissions to add labels before enabling
   - name: pull request has the no-review label
     if:
+      # "author_is_only_contributor", when true, is satisfied if all commits in the
+      # pull request are authored by and committed by the user who opened the pull
+      # request. When false, it is satisfied if at least one commit in the pull
+      # request was authored or committed by another user.
+      author_is_only_contributor: false
+
+      # "has_labels" is satisfied if the pull request has the specified labels
+      # applied
       has_labels:
         - "no-review"
 
     requires:
+      # "count" is the number of required approvals. The default is 0, meaning no
+      # approval is necessary.
       count: 0 # indicates "auto-approval"
-    
