@@ -23,34 +23,34 @@ approval_rules:
       # "write", "triage", and "read".
       permissions: ["write"]
 
-    methods:
-      # If a comment contains a string in this list, it counts as approval. Use
-      # the "comment_patterns" option if you want to match full comments. The
-      # default values are shown.
-      comments: []
-      #   - ":+1:"
-      #   - "👍"
-
-      # If a comment matches a regular expression in this list, it counts as
-      # approval. Defaults to an empty list.
-      #
-      # Note: Double-quote strings must escape backslashes while single/plain do not.
-      comment_patterns:
-        - "^(?i)(@balena-ci \\s+)?signed-off(-| )by:? \\s+" # eg. Signed-off-by: Foo Bar <foo@bar>
-        - "^(?i)(@balena-ci \\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!
-        - "^(?i)(@balena-ci \\s+)?approve this please!?$" # eg. @balena-ci Approve this please!
-        # - "^(?i)(@balena-ci \\s+)?lgtm!?$" # eg. @balena-ci LGTM
-
-      # If true, GitHub reviews can be used for approval. All GitHub review approvals
-      # will be accepted as approval candidates. Default is true.
-      github_review: true
-
     options:
       # If true, the approvals of someone who has committed to the pull request are
       # considered when calculating the status. The pull request author is considered
       # a contributor. If allow_author and allow_contributor would disagree, this option
       # always wins. False by default.
       allow_contributor: true
+
+      methods:
+        # If a comment contains a string in this list, it counts as approval. Use
+        # the "comment_patterns" option if you want to match full comments. The
+        # default values are shown.
+        comments: []
+        #   - ":+1:"
+        #   - "👍"
+
+        # If a comment matches a regular expression in this list, it counts as
+        # approval. Defaults to an empty list.
+        #
+        # Note: Double-quote strings must escape backslashes while single/plain do not.
+        comment_patterns:
+          - "^(?i)(@balena-ci \\s+)?signed-off(-| )by:? \\s+" # eg. Signed-off-by: Foo Bar <foo@bar>
+          - "^(?i)(@balena-ci \\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!
+          - "^(?i)(@balena-ci \\s+)?approve this please!?$" # eg. @balena-ci Approve this please!
+          # - "^(?i)(@balena-ci \\s+)?lgtm!?$" # eg. @balena-ci LGTM
+
+        # If true, GitHub reviews can be used for approval. All GitHub review approvals
+        # will be accepted as approval candidates. Default is true.
+        github_review: true
 
   # TODO: check who has permissions to add labels before enabling
   - name: pull request has the no-review label
