@@ -1,0 +1,78 @@
+policy:
+  approval:
+    - or:
+        - reviewers have approved
+        # - pull request has the no-review label
+
+approval_rules:
+  - name: reviewers have approved
+    if:
+      # "author_is_only_contributor", when true, is satisfied if all commits in the
+      # pull request are authored by and committed by the user who opened the pull
+      # request. When false, it is satisfied if at least one commit in the pull
+      # request was authored or committed by another user.
+      author_is_only_contributor: true
+
+    requires:
+      # "count" is the number of required approvals. The default is 0, meaning no
+      # approval is necessary.
+      count: 1
+
+      # A user must have at least the minimum permission in this list for their
+      # approval to count for this rule. Valid permissions are "admin", "maintain",
+      # "write", "triage", and "read".
+      permissions: ["write"]
+
+    options:
+      # If true, approvals by the author of a pull request are considered when
+      # calculating the status. False by default.
+      allow_author: true
+
+      # If true, the approvals of someone who has committed to the pull request are
+      # considered when calculating the status. The pull request author is considered
+      # a contributor. If allow_author and allow_contributor would disagree, this option
+      # always wins. False by default.
+      allow_contributor: true
+
+      # If true, pushing new commits to a pull request will invalidate existing
+      # approvals for this rule. False by default.
+      invalidate_on_push: true
+
+      methods:
+        # If a comment contains a string in this list, it counts as approval. Use
+        # the "comment_patterns" option if you want to match full comments. The
+        # default values are shown.
+        comments: []
+
+        # If a comment matches a regular expression in this list, it counts as
+        # approval. Defaults to an empty list.
+        #
+        # Note: Double-quote strings must escape backslashes while single/plain do not.
+        comment_patterns:
+          - "^(?i)(@balena-ci\\s+)?signed-off(-| )by:? \\s+" # eg. Signed-off-by: Foo Bar <foo@bar>
+          - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!
+          - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!
+          - "^(?i)(@balena-ci\\s+)?lgtm!?$" # eg. @balena-ci LGTM
+
+        # If true, GitHub reviews can be used for approval. All GitHub review approvals
+        # will be accepted as approval candidates. Default is true.
+        github_review: true
+
+  # TODO: check who has permissions to add labels before enabling
+  - name: pull request has the no-review label
+    if:
+      # "author_is_only_contributor", when true, is satisfied if all commits in the
+      # pull request are authored by and committed by the user who opened the pull
+      # request. When false, it is satisfied if at least one commit in the pull
+      # request was authored or committed by another user.
+      author_is_only_contributor: false
+
+      # "has_labels" is satisfied if the pull request has the specified labels
+      # applied
+      has_labels:
+        - "no-review"
+
+    requires:
+      # "count" is the number of required approvals. The default is 0, meaning no
+      # approval is necessary.
+      count: 0 # indicates "auto-approval"
