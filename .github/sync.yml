@@ -1,0 +1,8 @@
+# https://github.com/marketplace/actions/repo-file-sync-action
+group:
+  - repos: |
+      product-os-test/.github
+    files:
+      - source: policies/
+        dest: policies/
+        deleteOrphaned: true

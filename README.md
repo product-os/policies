@@ -1,6 +1,6 @@
 # policies
 
-Source of truth for [policy-bot](https://github.com/palantir/policy-bot) configuration for the balena organization.
+Approval/disapproval policies for [policy-bot](https://github.com/palantir/policy-bot).
 
 > `policy-bot` is a [GitHub App](https://developer.github.com/apps/) for enforcing
 approval policies on pull requests. It does this by creating a status check,
