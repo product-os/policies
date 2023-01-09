@@ -42,9 +42,7 @@ approval_rules:
         # If a comment contains a string in this list, it counts as approval. Use
         # the "comment_patterns" option if you want to match full comments. The
         # default values are shown.
-        comments:
-          - ":+1:"
-          - "👍"
+        comments: []
 
         # If a comment matches a regular expression in this list, it counts as
         # approval. Defaults to an empty list.
