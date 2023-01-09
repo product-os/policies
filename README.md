@@ -1,4 +1,4 @@
-# approval-policy
+# policies
 
 Source of truth for [policy-bot](https://github.com/palantir/policy-bot) configuration for the balena organization.
 
