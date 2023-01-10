@@ -1,6 +1,25 @@
 # https://github.com/marketplace/actions/repo-file-sync-action
 group:
   - repos: |
+      balena-fleetops/.github
+      balena-io/.github
+      balena-io-examples/.github
+      balena-io-experimental/.github
+      balena-io-hardware/.github
+      balena-io-incubator/.github
+      balena-io-library/.github
+      balena-io-modules/.github
+      balena-io-projects/.github
+      balena-io-security/.github
+      balena-labs-projects/.github
+      balena-labs-research/.github
+      balena-os/.github
+      balenalabs/.github
+      balenalabs-incubator/.github
+      balenaltd/.github
+      company-os/.github
+      people-os/.github
+      product-os/.github
       product-os-test/.github
     files:
       - source: policies/
