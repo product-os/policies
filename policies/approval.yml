@@ -43,7 +43,7 @@ approval_rules:
         #
         # Note: Double-quote strings must escape backslashes while single/plain do not.
         comment_patterns:
-          - "^(?i)signed(-| )off(-| )by:?\\s+" # eg. Signed-off-by: , signed off by
+          - "^(?i)acked(-| )by:?\\s+" # eg. Acked-by: , acked by
           - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!, i self-certify
           - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!, approve this please
           - "^(?i)lgtm!?$" # eg. LGTM, lgtm, Lgtm
