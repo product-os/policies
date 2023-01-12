@@ -43,10 +43,10 @@ approval_rules:
         #
         # Note: Double-quote strings must escape backslashes while single/plain do not.
         comment_patterns:
-          - "^(?i)(@balena-ci\\s+)?signed-off(-| )by:? \\s+" # eg. Signed-off-by: Foo Bar <foo@bar>
-          - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!
-          - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!
-          - "^(?i)(@balena-ci\\s+)?lgtm!?$" # eg. @balena-ci LGTM
+          - "^(?i)signed(-| )off(-| )by:?\\s+" # eg. Signed-off-by: , signed off by
+          - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!, i self-certify
+          - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!, approve this please
+          - "^(?i)lgtm!?$" # eg. LGTM, lgtm, Lgtm
 
         # If true, GitHub reviews can be used for approval. All GitHub review approvals
         # will be accepted as approval candidates. Default is true.
