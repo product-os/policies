@@ -2,7 +2,7 @@ policy:
   approval:
     - or:
         - reviewers have approved
-        # - pull request has the no-review label
+        - pull request has special labels
 
 approval_rules:
   - name: reviewers have approved
@@ -52,21 +52,11 @@ approval_rules:
         # will be accepted as approval candidates. Default is true.
         github_review: true
 
-  # TODO: check who has permissions to add labels before enabling
-  - name: pull request has the no-review label
+  - name: pull request has special labels
     if:
-      # "author_is_only_contributor", when true, is satisfied if all commits in the
-      # pull request are authored by and committed by the user who opened the pull
-      # request. When false, it is satisfied if at least one commit in the pull
-      # request was authored or committed by another user.
-      author_is_only_contributor: false
-
       # "has_labels" is satisfied if the pull request has the specified labels
       # applied
       has_labels:
+        - "renovate"
+        - "dependencies"
         - "no-review"
-
-    requires:
-      # "count" is the number of required approvals. The default is 0, meaning no
-      # approval is necessary.
-      count: 0 # indicates "auto-approval"
