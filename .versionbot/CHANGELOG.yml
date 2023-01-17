@@ -1,4 +1,16 @@
 - commits:
+    - subject: Specify default branch
+      hash: 6311c7b1e43966c39c20f369b8f36509119edebb
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.0.1
+  title: ""
+  date: 2023-01-17T16:28:43.003Z
+- commits:
     - subject: Enable Flowzone
       hash: e5d5c243eca73f85cd7f8b0b2979e5edfa4e16e6
       body: ""
