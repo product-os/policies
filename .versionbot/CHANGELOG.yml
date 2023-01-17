@@ -1,4 +1,16 @@
 - commits:
+    - subject: Separate label policies
+      hash: 4594128d7413e48298f8dcdf22add4693cde170a
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.0.2
+  title: ""
+  date: 2023-01-17T17:09:01.132Z
+- commits:
     - subject: Specify default branch
       hash: 6311c7b1e43966c39c20f369b8f36509119edebb
       body: ""
