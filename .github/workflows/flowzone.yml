@@ -13,5 +13,6 @@ jobs:
     secrets: inherit
     with:
       repo_config: true
+      repo_default_branch: "main"
       repo_description: "Source of truth for policy-bot configuration for the balena organization."
       required_approving_review_count: 0
