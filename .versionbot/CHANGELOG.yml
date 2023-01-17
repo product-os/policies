@@ -1,4 +1,16 @@
 - commits:
+    - subject: Fix policy YML
+      hash: 4d3bc54f19528593a1c7bd7bd9129bde288c53bc
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.0.3
+  title: ""
+  date: 2023-01-17T17:14:33.067Z
+- commits:
     - subject: Separate label policies
       hash: 4594128d7413e48298f8dcdf22add4693cde170a
       body: ""
