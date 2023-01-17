@@ -2,6 +2,7 @@ policy:
   approval:
     - or:
         - reviewers have approved
+        - renovate pull request
         - pull request has special labels
 
 approval_rules:
@@ -52,11 +53,15 @@ approval_rules:
         # will be accepted as approval candidates. Default is true.
         github_review: true
 
-  - name: pull request has special labels
+  - name: renovate pull request
     if:
       # "has_labels" is satisfied if the pull request has the specified labels
       # applied
       has_labels:
-        - "renovate"
+        - "renovate",
         - "dependencies"
+
+  - name: pull request has special labels
+    if:
+      has_labels:
         - "no-review"
