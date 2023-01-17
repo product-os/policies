@@ -58,7 +58,7 @@ approval_rules:
       # "has_labels" is satisfied if the pull request has the specified labels
       # applied
       has_labels:
-        - "renovate",
+        - "renovate"
         - "dependencies"
 
   - name: pull request has special labels
