@@ -1,0 +1,163 @@
+- commits:
+    - subject: Enable Flowzone
+      hash: e5d5c243eca73f85cd7f8b0b2979e5edfa4e16e6
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+    - subject: Approve renovate PRs automatically
+      hash: dc4baae4450e27c03e2a48b8bbfb31999ab63cca
+      body: >
+        *
+        [renovate](https://github.com/product-os/renovate-config/blob/master/.github/renovate.json#L21-L23)
+        adds `renovate` and `dependencies` labels to each PR
+
+        * write privilege required to label PRs
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Anton Belodedenko
+      nested: []
+    - subject: "policies: approval: s/Signed-off-by/Acked-by"
+      hash: 99f55933cba7320b82f3aba07f9672e5a18762f6
+      body: >
+        Acked-by is a more appropriate approval comment than Signed-off-by, the
+
+        latter of which is used to indicate that the contribution complies with
+
+        the licensing of the project, rather than indicating that the
+
+        contribution has been reviewed and found to have technical merit.
+
+
+        https://www.kernel.org/doc/html/v4.17/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Joseph Kogut <joseph@balena.io>
+        signed-off-by: Joseph Kogut <joseph@balena.io>
+      author: Joseph Kogut
+      nested: []
+    - subject: Clean up comment patterns
+      hash: 5968d9073b72aa83f52c1a306901981512c745ed
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Remove contributors condition
+      hash: 71efa6b15a6a13ed0b9b5cd1f416ac5ee02a5deb
+      body: |
+        We want to allow multiple contributors, without requiring it.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: "set author_is_only_contributor: false"
+      hash: 664e5b993574b55de42ef2b9a3d1def7f79868c4
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+    - subject: Add additional balena orgs to sync workflow
+      hash: 0e23b7f2125d2652750798acbf8fd69398389922
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Sync policies across orgs on changes
+      hash: 10e7b5dfe9504bc80ba12a27cc712a14e49462d7
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Rename repo and policy file to support additional policies
+      hash: 63d4dfa7836229ed540aeac7b7c4d3c348f61217
+      body: |
+        We don't want to limit ourselves to a single policy file.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Disable comment strings and prefer comment patterns
+      hash: daeca1a149ad9e48e997f69bd1939f96d12079cb
+      body: |
+        For now we want to avoid matching words in the middle of
+        a comment body and prefer a more strict match.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Fix regex and enable comments
+      hash: f48676e5b068aa8ba900b5e4f387fcf2e11f836d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+    - subject: Fix policy schema
+      hash: 0d620a6c46f4105eeef435ce70c646867513a6d9
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+    - subject: Allow contributors and authors to approve
+      hash: 1f826d47739f763ec42aae0998f0b106f64c965f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Add additional comment patterns for approvals
+      hash: 0b57ab84b6e4ecf45f9eb64096fe349497a14542
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Allow non-author contributors to contribute and/or approve
+      hash: 67e06927214c137d6dc79597e2521c0b95486c54
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.0.0
+  title: ""
+  date: 2023-01-17T16:16:54.543Z
