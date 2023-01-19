@@ -61,9 +61,9 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - or:
-            - "isPatch:true"
-            - "isMinor:true"
-            - "depType:devDependencies"
+            - "minor"
+            - "patch"
+            - "digest"
 
   - name: pull request has special labels
     if:
