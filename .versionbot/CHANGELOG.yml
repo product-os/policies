@@ -1,4 +1,16 @@
 - commits:
+    - subject: Tune PR approval using labels
+      hash: df9dbd3da6dc652884608908b70b006d341d4ca5
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.0.4
+  title: ""
+  date: 2023-01-20T23:09:10.919Z
+- commits:
     - subject: Fix policy YML
       hash: 4d3bc54f19528593a1c7bd7bd9129bde288c53bc
       body: ""
