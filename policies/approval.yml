@@ -60,6 +60,10 @@ approval_rules:
       has_labels:
         - "renovate"
         - "dependencies"
+        - or:
+            - "minor"
+            - "patch"
+            - "digest"
 
   - name: pull request has special labels
     if:
