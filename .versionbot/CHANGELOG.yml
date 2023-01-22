@@ -1,4 +1,18 @@
 - commits:
+    - subject: Revert "Tune PR approval using labels"
+      hash: 9532ba99c1ee8debfd85bdfe675c104f217b39dc
+      body: |
+        This reverts commit df9dbd3da6dc652884608908b70b006d341d4ca5.
+        This reverts commit 400b5490d30d12df3ee7cdade47850b7ad24795f.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Kyle Harding
+      nested: []
+  version: 1.0.5
+  title: ""
+  date: 2023-01-22T02:08:42.795Z
+- commits:
     - subject: Tune PR approval using labels
       hash: df9dbd3da6dc652884608908b70b006d341d4ca5
       body: ""
