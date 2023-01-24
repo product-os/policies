@@ -1,0 +1,21 @@
+# https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+name: "Validate policy"
+description: "Validate the syntax of the approval policy"
+inputs:
+  json:
+    description: "JSON stringified object containing all the inputs from the calling workflow"
+    required: true
+  secrets:
+    description: "JSON stringified object containing all the secrets from the calling workflow"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Validate policy
+      shell: bash
+      env:
+        DOMAIN: https://policy-bot.product-os.io
+        POLICY_PATH: policies/approval.yml
+      run: |
+        rcode=$(curl "${DOMAIN}/api/validate" -XPUT -T "${POLICY_PATH}" -s -w "%{http_code}" -o /tmp/response)
+        if [[ "${rcode}" -gt 299 ]]; then cat /tmp/response && exit 1; fi
