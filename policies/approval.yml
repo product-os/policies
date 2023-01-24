@@ -2,9 +2,13 @@ policy:
   approval:
     - or:
         - reviewers have approved
-        - renovate pull request
-        - pull request has special labels
-
+        - and:
+            - has renovate labels
+            - or:
+                - has label minor
+                - has label patch
+                - has label digest
+        - has label no-review
 approval_rules:
   - name: reviewers have approved
 
@@ -53,15 +57,33 @@ approval_rules:
         # will be accepted as approval candidates. Default is true.
         github_review: true
 
-  - name: renovate pull request
+  - name: has renovate labels
     if:
       # "has_labels" is satisfied if the pull request has the specified labels
-      # applied
       has_labels:
         - "renovate"
         - "dependencies"
 
-  - name: pull request has special labels
+  - name: has label minor
+    if:
+      # "has_labels" is satisfied if the pull request has the specified labels
+      has_labels:
+        - "minor"
+
+  - name: has label patch
+    if:
+      # "has_labels" is satisfied if the pull request has the specified labels
+      has_labels:
+        - "patch"
+
+  - name: has label digest
+    if:
+      # "has_labels" is satisfied if the pull request has the specified labels
+      has_labels:
+        - "digest"
+
+  - name: has label no-review
+    # "has_labels" is satisfied if the pull request has the specified labels
     if:
       has_labels:
         - "no-review"
