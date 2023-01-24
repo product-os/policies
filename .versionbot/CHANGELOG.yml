@@ -1,4 +1,28 @@
 - commits:
+    - subject: Only approve renovate PRs with specific updateTypes
+      hash: 081294f226f5be5c1287781973041ea66e63ef39
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Add custom Flowzone action to validate the approval policy syntax
+      hash: 72da1deb0a382e17db1d93a7ca379286450c9d66
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.0.6
+  title: ""
+  date: 2023-01-24T14:31:38.912Z
+- commits:
     - subject: Revert "Tune PR approval using labels"
       hash: 9532ba99c1ee8debfd85bdfe675c104f217b39dc
       body: |
