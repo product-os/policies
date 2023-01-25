@@ -1,4 +1,18 @@
 - commits:
+    - subject: Fix conditions for renovate labels
+      hash: e4844e55fce07a3eddac46336806a2803d2921ff
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.0.7
+  title: ""
+  date: 2023-01-25T13:56:43.397Z
+- commits:
     - subject: Only approve renovate PRs with specific updateTypes
       hash: 081294f226f5be5c1287781973041ea66e63ef39
       body: ""
