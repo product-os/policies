@@ -1,4 +1,19 @@
 - commits:
+    - subject: Invalidate approvals on push for forks only
+      hash: 7f764c03364bfc58dd34d5f3c0b506d4e3bc4c4d
+      body: |
+        Internal branches should only need to be approved once.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.1.0
+  title: ""
+  date: 2023-02-03T19:03:35.594Z
+- commits:
     - subject: Fix conditions for renovate labels
       hash: e4844e55fce07a3eddac46336806a2803d2921ff
       body: ""
