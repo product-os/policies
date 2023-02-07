@@ -1,4 +1,21 @@
 - commits:
+    - subject: Disable approval policy for forks for now
+      hash: 9c5112b3c32b73c93856fea1b9244af656c66863
+      body: |
+        It appears that the write permissions are considered
+        from the source repo, not the destination, so we need
+        to switch to groups for approvals of forks.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.1.1
+  title: ""
+  date: 2023-02-07T17:39:10.760Z
+- commits:
     - subject: Invalidate approvals on push for forks only
       hash: 7f764c03364bfc58dd34d5f3c0b506d4e3bc4c4d
       body: |
