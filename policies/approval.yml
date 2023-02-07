@@ -2,7 +2,7 @@ policy:
   approval:
     - or:
         - reviewers have approved
-        - reviewers have approved fork
+        # - reviewers have approved fork
         - has renovate minor labels
         - has renovate patch labels
         - has renovate digest labels
@@ -88,6 +88,16 @@ approval_rules:
       permissions: ["write"]
 
     options:
+
+      # If true, approvals by the author of a pull request are considered when
+      # calculating the status. False by default.
+      allow_author: true
+
+      # If true, the approvals of someone who has committed to the pull request are
+      # considered when calculating the status. The pull request author is considered
+      # a contributor. If allow_author and allow_contributor would disagree, this option
+      # always wins. False by default.
+      allow_contributor: true
 
       # If true, pushing new commits to a pull request will invalidate existing
       # approvals for this rule. False by default.
