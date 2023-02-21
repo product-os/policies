@@ -154,6 +154,13 @@ approval_rules:
         - "dependencies"
         - "minor"
 
+      # "has_successful_status" is satisfied if the status checks that are specified
+      # are marked successful on the head commit of the pull request.
+      has_successful_status:
+        - "Flowzone / Versioned source"
+        - "Flowzone / Protect branch"
+        - "Jenkins build"
+
   - name: has renovate patch labels
     if:
       # "has_labels" is satisfied if the pull request has the specified labels
@@ -162,6 +169,13 @@ approval_rules:
         - "dependencies"
         - "patch"
 
+      # "has_successful_status" is satisfied if the status checks that are specified
+      # are marked successful on the head commit of the pull request.
+      has_successful_status:
+        - "Flowzone / Versioned source"
+        - "Flowzone / Protect branch"
+        - "Jenkins build"
+
   - name: has renovate digest labels
     if:
       # "has_labels" is satisfied if the pull request has the specified labels
@@ -169,6 +183,13 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "digest"
+
+      # "has_successful_status" is satisfied if the status checks that are specified
+      # are marked successful on the head commit of the pull request.
+      has_successful_status:
+        - "Flowzone / Versioned source"
+        - "Flowzone / Protect branch"
+        - "Jenkins build"
 
   - name: has label no-review
     # "has_labels" is satisfied if the pull request has the specified labels
