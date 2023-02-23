@@ -1,4 +1,16 @@
 - commits:
+    - subject: Don't approve based on renovate labels
+      hash: 37bbe201e0f2a7b4c2506d6b91186fdd3b44038b
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.2.1
+  title: ""
+  date: 2023-02-23T19:20:17.249Z
+- commits:
     - subject: Enforce team membership on fork approvals
       hash: 2c4eab92eea25165ad0f3d7780d994a5ca809379
       body: ""
