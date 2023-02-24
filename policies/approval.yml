@@ -3,9 +3,9 @@ policy:
     - or:
         - reviewers have approved
         - reviewers have approved fork
-        #- has renovate minor labels
-        #- has renovate patch labels
-        #- has renovate digest labels
+        - has renovate minor labels
+        - has renovate patch labels
+        - has renovate digest labels
         - has label no-review
 
 approval_rules:
@@ -147,29 +147,29 @@ approval_rules:
         # will be accepted as approval candidates. Default is true.
         github_review: true
 
-#  - name: has renovate minor labels
-#    if:
-#      # "has_labels" is satisfied if the pull request has the specified labels
-#      has_labels:
-#        - "renovate"
-#        - "dependencies"
-#        - "minor"
-#
-#  - name: has renovate patch labels
-#    if:
-#      # "has_labels" is satisfied if the pull request has the specified labels
-#      has_labels:
-#        - "renovate"
-#        - "dependencies"
-#        - "patch"
-#
-#  - name: has renovate digest labels
-#    if:
-#      # "has_labels" is satisfied if the pull request has the specified labels
-#      has_labels:
-#        - "renovate"
-#        - "dependencies"
-#        - "digest"
+  - name: has renovate minor labels
+    if:
+      # "has_labels" is satisfied if the pull request has the specified labels
+      has_labels:
+        - "renovate"
+        - "dependencies"
+        - "minor"
+
+  - name: has renovate patch labels
+    if:
+      # "has_labels" is satisfied if the pull request has the specified labels
+      has_labels:
+        - "renovate"
+        - "dependencies"
+        - "patch"
+
+  - name: has renovate digest labels
+    if:
+      # "has_labels" is satisfied if the pull request has the specified labels
+      has_labels:
+        - "renovate"
+        - "dependencies"
+        - "digest"
 
   - name: has label no-review
     # "has_labels" is satisfied if the pull request has the specified labels
