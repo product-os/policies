@@ -1,4 +1,16 @@
 - commits:
+    - subject: Split digest and pinDigest policies
+      hash: 7c76c1616cde4e67b071766d6c3fb13b0a8f3fa9
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.2.5
+  title: ""
+  date: 2023-02-27T19:15:01.626Z
+- commits:
     - subject: Include new pinDigest label
       hash: 555c0ceeb755303826326bd2eec27e7d0da7c0e5
       body: |
