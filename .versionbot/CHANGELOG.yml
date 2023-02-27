@@ -1,4 +1,16 @@
 - commits:
+    - subject: Revert renovate label approval
+      hash: ca764b00de7985ba20b28bf3fc72d6d9207796f8
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.2.2
+  title: ""
+  date: 2023-02-27T16:11:18.677Z
+- commits:
     - subject: Don't approve based on renovate labels
       hash: 37bbe201e0f2a7b4c2506d6b91186fdd3b44038b
       body: ""
