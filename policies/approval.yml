@@ -6,6 +6,7 @@ policy:
         - has renovate minor labels
         - has renovate patch labels
         - has renovate digest labels
+        - has renovate pinDigest labels
         - has label no-review
 
 approval_rules:
@@ -160,7 +161,6 @@ approval_rules:
 
   - name: has renovate patch labels
     if:
-      # "has_labels" is satisfied if the pull request has the specified labels
       has_labels:
         - "renovate"
         - "dependencies"
@@ -169,20 +169,28 @@ approval_rules:
         not_matches:
           - "balena-os/.+"
 
+  # legacy?
   - name: has renovate digest labels
     if:
-      # "has_labels" is satisfied if the pull request has the specified labels
       has_labels:
         - "renovate"
         - "dependencies"
         - "digest"
+      repository:
+        not_matches:
+          - "balena-os/.+"
+
+  - name: has renovate pinDigest labels
+    if:
+      has_labels:
+        - "renovate"
+        - "dependencies"
         - "pinDigest"
       repository:
         not_matches:
           - "balena-os/.+"
 
   - name: has label no-review
-    # "has_labels" is satisfied if the pull request has the specified labels
     if:
       has_labels:
         - "no-review"
