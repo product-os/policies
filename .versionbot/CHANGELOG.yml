@@ -1,4 +1,18 @@
 - commits:
+    - subject: Do not match renovate labels on balena-os repos for now
+      hash: 8a6150414d4825d97267769852e3d7a3229a5739
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.2.3
+  title: ""
+  date: 2023-02-27T17:33:05.748Z
+- commits:
     - subject: Revert renovate label approval
       hash: ca764b00de7985ba20b28bf3fc72d6d9207796f8
       body: ""
