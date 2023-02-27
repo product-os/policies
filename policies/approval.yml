@@ -154,6 +154,9 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "minor"
+      repository:
+        not_matches:
+          - "balena-os/.+"
 
   - name: has renovate patch labels
     if:
@@ -162,6 +165,9 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "patch"
+      repository:
+        not_matches:
+          - "balena-os/.+"
 
   - name: has renovate digest labels
     if:
@@ -170,6 +176,9 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "digest"
+      repository:
+        not_matches:
+          - "balena-os/.+"
 
   - name: has label no-review
     # "has_labels" is satisfied if the pull request has the specified labels
