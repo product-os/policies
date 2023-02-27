@@ -176,6 +176,7 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "digest"
+        - "pinDigest"
       repository:
         not_matches:
           - "balena-os/.+"
