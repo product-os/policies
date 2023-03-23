@@ -1,4 +1,17 @@
 - commits:
+    - subject: Revert "Do not match renovate labels on balena-os repos for now"
+      hash: fde7a66ca0e26a5e871e99060ec595e982fcd19d
+      body: |
+        This reverts commit 8a6150414d4825d97267769852e3d7a3229a5739.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Kyle Harding
+      nested: []
+  version: 1.2.6
+  title: ""
+  date: 2023-03-23T17:51:26.775Z
+- commits:
     - subject: Split digest and pinDigest policies
       hash: 7c76c1616cde4e67b071766d6c3fb13b0a8f3fa9
       body: ""
