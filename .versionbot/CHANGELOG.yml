@@ -1,4 +1,19 @@
 - commits:
+    - subject: Require sudoer approval for some repositories
+      hash: d66046e9fa8bc1ec06acaec05d50f7108c956ded
+      body: |
+        Also use yaml anchors to avoid duplication.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.3.0
+  title: ""
+  date: 2023-04-27T19:31:26.147Z
+- commits:
     - subject: Revert "Do not match renovate labels on balena-os repos for now"
       hash: fde7a66ca0e26a5e871e99060ec595e982fcd19d
       body: |
