@@ -21,3 +21,5 @@ jobs:
           SKIP_PR: true
           COMMIT_EACH_FILE: false
           DRY_RUN: ${{ github.event_name == 'pull_request' }}
+          COMMIT_PREFIX: "patch: "
+          COMMIT_BODY: "[skip ci]"
