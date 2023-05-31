@@ -1,4 +1,18 @@
 - commits:
+    - subject: Use installation app tokens and a matrix to sync policies
+      hash: 873899cbe5b2d9c121061baf72b9d9bdb4ba77a0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.3.2
+  title: ""
+  date: 2023-05-31T15:03:45.321Z
+- commits:
     - subject: Update commit message used to sync policies
       hash: 47702094e68fe65a2fb80738d159c8aa4844f68c
       body: ""
