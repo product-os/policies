@@ -63,27 +63,6 @@ approval_rules:
     requires: &requireMembers
       count: 1
       permissions: ["write"]
-      organizations:
-        - "balena-fleetops"
-        - "balena-io"
-        - "balena-io-examples"
-        - "balena-io-experimental"
-        - "balena-io-hardware"
-        - "balena-io-incubator"
-        - "balena-io-library"
-        - "balena-io-modules"
-        - "balena-io-projects"
-        - "balena-io-security"
-        - "balena-labs-projects"
-        - "balena-labs-research"
-        - "balena-os"
-        - "balenalabs"
-        - "balenalabs-incubator"
-        - "balenaltd"
-        - "company-os"
-        - "people-os"
-        - "product-os"
-        - "product-os-test"
       teams:
         - "balena-fleetops/balena-dev"
         - "balena-io/balena-dev"
