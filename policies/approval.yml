@@ -2,59 +2,17 @@ policy:
   approval:
     - or:
         - sudoers have approved
-        - members have approved
-        - members have approved fork
+        - team members have approved
+        - team members have approved fork
         - has renovate minor labels
         - has renovate patch labels
         - has renovate digest labels
         - has renovate pinDigest labels
         - has renovate pin labels
         - has label no-review
-
-approval_rules:
-  # some repositories require sudoers approval
-  - name: sudoers have approved
-
-    if:
-      from_branch: &excludeForks
-        pattern: "^[^:]+$"
-
-    requires: &requireSudoers
-      count: 1
-      teams:
-        - "balenaltd/sudoers"
-
-    options: &defaultOptions
-      allow_author: true
-      allow_contributor: true
-      invalidate_on_push: false
-      ignore_edited_comments: true
-
-      methods:
-        comments: []
-        comment_patterns:
-          - "^(?i)acked(-| )by:?\\s+" # eg. Acked-by: , acked by
-          - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!, i self-certify
-          - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!, approve this please
-          - "^(?i)lgtm!?$" # eg. LGTM, lgtm, Lgtm
-        github_review: true
-
-  # remaining repositories can be approved by any team member
-  - name: members have approved
-
-    if:
-      from_branch:
-        <<: *excludeForks
-      # exclude the following repositories that require sudoers approval
-      repository: &excludeRestrictedRepositories
-        not_matches:
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
-
-    requires: &requireMembers
-      count: 1
-      teams:
+  disapproval:
+    requires:
+      teams: &balenaTeams
         - "balena-fleetops/balena-dev"
         - "balena-io/balena-dev"
         - "balena-io-examples/balena-dev"
@@ -69,19 +27,79 @@ approval_rules:
         - "company-os/balena-dev"
         - "people-os/balena-dev"
         - "product-os/balena-dev"
+    options:
+      # "methods" defines how users set and revoke disapproval.
+      methods:
+        # "disapprove" sets the methods for disapproval.
+        disapprove:
+          comments:
+            - ":-1:"
+            - "👎"
+          github_review: true
+        # "revoke" sets the methods for revoking disapproval. Usually, these will
+        # match the methods used by approval rules.
+        revoke:
+          comments: []
+          comment_patterns: &approvalPatterns
+            - "^(?i)acked(-| )by:?\\s+" # eg. Acked-by: , acked by
+            - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!, i self-certify
+            - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!, approve this please
+            - "^(?i)lgtm!?$" # eg. LGTM, lgtm, Lgtm
+          github_review: true
+
+approval_rules:
+  - name: sudoers have approved
+
+    if:
+      from_branch: &excludeForks
+        pattern: "^[^:]+$"
+
+    requires:
+      count: 1
+      teams:
+        - "balenaltd/sudoers"
+
+    options: &defaultOptions
+      allow_author: true
+      allow_contributor: true
+      invalidate_on_push: false
+      ignore_edited_comments: true
+
+      methods:
+        comments: []
+        comment_patterns:
+          *approvalPatterns
+        github_review: true
+
+  - name: team members have approved
+
+    if:
+      from_branch:
+        <<: *excludeForks
+      repository: &excludeRestrictedRepositories
+        not_matches:
+          - "product-os/policies"
+          - "balenaltd/admins"
+          - ".*/.github"
+
+    requires:
+      count: 1
+      teams:
+        *balenaTeams
 
     options:
       <<: *defaultOptions
 
-  # allow forks but disallow comments and invalidate on push
-  - name: members have approved fork
+  - name: team members have approved fork
 
     if:
       repository:
         <<: *excludeRestrictedRepositories
 
     requires:
-      <<: *requireMembers
+      count: 1
+      teams:
+        *balenaTeams
 
     options:
       <<: *defaultOptions
