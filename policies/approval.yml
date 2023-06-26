@@ -88,12 +88,6 @@ approval_rules:
       # invalidate on push for forks
       invalidate_on_push: true
 
-      methods:
-        # disable comment approvals
-        comments: []
-        comment_patterns: []
-        github_review: true
-
   - name: has renovate minor labels
     if:
       has_labels:
