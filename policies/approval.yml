@@ -16,25 +16,19 @@ approval_rules:
   - name: sudoers have approved
 
     if:
-      # exclude forks from this rule
-      from_branch:
+      from_branch: &excludeForks
         pattern: "^[^:]+$"
-      # include the following repositories that require sudoers approval
-      repository:
-        matches:
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
 
-    requires:
+    requires: &requireSudoers
       count: 1
       teams:
         - "balenaltd/sudoers"
 
-    options: &options
+    options: &defaultOptions
       allow_author: true
       allow_contributor: true
       invalidate_on_push: false
+      ignore_edited_comments: true
 
       methods:
         comments: []
@@ -49,11 +43,10 @@ approval_rules:
   - name: members have approved
 
     if:
-      # exclude forks from this rule
       from_branch:
-        pattern: "^[^:]+$"
+        <<: *excludeForks
       # exclude the following repositories that require sudoers approval
-      repository:
+      repository: &excludeRestrictedRepositories
         not_matches:
           - "product-os/policies"
           - "balenaltd/admins"
@@ -61,28 +54,6 @@ approval_rules:
 
     requires: &requireMembers
       count: 1
-      permissions: ["write"]
-      organizations:
-        - "balena-fleetops"
-        - "balena-io"
-        - "balena-io-examples"
-        - "balena-io-experimental"
-        - "balena-io-hardware"
-        - "balena-io-incubator"
-        - "balena-io-library"
-        - "balena-io-modules"
-        - "balena-io-projects"
-        - "balena-io-security"
-        - "balena-labs-projects"
-        - "balena-labs-research"
-        - "balena-os"
-        - "balenalabs"
-        - "balenalabs-incubator"
-        - "balenaltd"
-        - "company-os"
-        - "people-os"
-        - "product-os"
-        - "product-os-test"
       teams:
         - "balena-fleetops/balena-dev"
         - "balena-io/balena-dev"
@@ -100,37 +71,22 @@ approval_rules:
         - "product-os/balena-dev"
 
     options:
-      <<: *options
+      <<: *defaultOptions
 
   # allow forks but disallow comments and invalidate on push
   - name: members have approved fork
 
     if:
-      # include forks in this rule
-      from_branch:
-        pattern: "^.+:.+$"
-      # exclude the following repositories that require sudoers approval
       repository:
-        not_matches:
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
+        <<: *excludeRestrictedRepositories
 
     requires:
       <<: *requireMembers
 
     options:
-      allow_author: true
-      allow_contributor: true
+      <<: *defaultOptions
       # invalidate on push for forks
       invalidate_on_push: true
-
-      methods:
-        # disable comment approvals
-        comments: []
-        comment_patterns: []
-        # allow github review approvals
-        github_review: true
 
   - name: has renovate minor labels
     if:
@@ -138,6 +94,10 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "minor"
+      from_branch:
+        <<: *excludeForks
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate patch labels
     if:
@@ -145,6 +105,10 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "patch"
+      from_branch:
+        <<: *excludeForks
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate digest labels
     if:
@@ -152,6 +116,10 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "digest"
+      from_branch:
+        <<: *excludeForks
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate pinDigest labels
     if:
@@ -159,6 +127,10 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "pinDigest"
+      from_branch:
+        <<: *excludeForks
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate pin labels
     if:
@@ -166,8 +138,16 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "pin"
+      from_branch:
+        <<: *excludeForks
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has label no-review
     if:
       has_labels:
         - "no-review"
+      from_branch:
+        <<: *excludeForks
+      repository:
+        <<: *excludeRestrictedRepositories
