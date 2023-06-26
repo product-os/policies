@@ -1,4 +1,53 @@
 - commits:
+    - subject: Prevent approval of forks with labels
+      hash: cf016d36486f8920b85825923d891724e0c40a4c
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Exclude restricted repos from label rules
+      hash: af0216eed014c0fe029f341f0d63f2ff6b8e9997
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Limit default approvals to team memberships, not org memberships
+      hash: 77a07248eb6152ae4afe1d8da7bf7ace0b12b5f6
+      body: >
+        Teams are a more secure way to manage who can approve at different
+        levels.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Ignore edited comments when evaluating approval
+      hash: b0092869a1a6fb05dd0e440a9868edd3be138e9a
+      body: |
+        This prevents users with permission to edit comments
+        from changing the message to something that would self-certify
+        on behalf of another user.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.3.3
+  title: ""
+  date: 2023-06-26T20:13:03.404Z
+- commits:
     - subject: Use installation app tokens and a matrix to sync policies
       hash: 873899cbe5b2d9c121061baf72b9d9bdb4ba77a0
       body: ""
