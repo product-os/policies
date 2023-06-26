@@ -35,6 +35,7 @@ approval_rules:
       allow_author: true
       allow_contributor: true
       invalidate_on_push: false
+      ignore_edited_comments: true
 
       methods:
         comments: []
