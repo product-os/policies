@@ -17,21 +17,15 @@ approval_rules:
 
     if:
       # exclude forks from this rule
-      from_branch:
+      from_branch: &excludeForks
         pattern: "^[^:]+$"
-      # include the following repositories that require sudoers approval
-      repository:
-        matches:
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
 
-    requires:
+    requires: &requireSudoers
       count: 1
       teams:
         - "balenaltd/sudoers"
 
-    options: &options
+    options: &defaultOptions
       allow_author: true
       allow_contributor: true
       invalidate_on_push: false
@@ -52,9 +46,9 @@ approval_rules:
     if:
       # exclude forks from this rule
       from_branch:
-        pattern: "^[^:]+$"
+        <<: *excludeForks
       # exclude the following repositories that require sudoers approval
-      repository:
+      repository: &excludeRestrictedRepositories
         not_matches:
           - "product-os/policies"
           - "balenaltd/admins"
@@ -62,7 +56,6 @@ approval_rules:
 
     requires: &requireMembers
       count: 1
-      permissions: ["write"]
       teams:
         - "balena-fleetops/balena-dev"
         - "balena-io/balena-dev"
@@ -80,7 +73,7 @@ approval_rules:
         - "product-os/balena-dev"
 
     options:
-      <<: *options
+      <<: *defaultOptions
 
   # allow forks but disallow comments and invalidate on push
   - name: members have approved fork
@@ -89,19 +82,14 @@ approval_rules:
       # include forks in this rule
       from_branch:
         pattern: "^.+:.+$"
-      # exclude the following repositories that require sudoers approval
       repository:
-        not_matches:
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
+        <<: *excludeRestrictedRepositories
 
     requires:
       <<: *requireMembers
 
     options:
-      allow_author: true
-      allow_contributor: true
+      <<: *defaultOptions
       # invalidate on push for forks
       invalidate_on_push: true
 
@@ -109,7 +97,6 @@ approval_rules:
         # disable comment approvals
         comments: []
         comment_patterns: []
-        # allow github review approvals
         github_review: true
 
   - name: has renovate minor labels
@@ -118,6 +105,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "minor"
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate patch labels
     if:
@@ -125,6 +114,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "patch"
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate digest labels
     if:
@@ -132,6 +123,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "digest"
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate pinDigest labels
     if:
@@ -139,6 +132,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "pinDigest"
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has renovate pin labels
     if:
@@ -146,8 +141,12 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "pin"
+      repository:
+        <<: *excludeRestrictedRepositories
 
   - name: has label no-review
     if:
       has_labels:
         - "no-review"
+      repository:
+        <<: *excludeRestrictedRepositories
