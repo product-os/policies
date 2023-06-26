@@ -1,4 +1,20 @@
 - commits:
+    - subject: Add global disapproval condition for all team members
+      hash: 444ea81d212c1ffe32a6b4153badb10291c478e2
+      body: |
+        Without a disapproval rule, GitHub review requested changes
+        have no effect on the policy-bot status.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.3.4
+  title: ""
+  date: 2023-06-26T20:37:53.936Z
+- commits:
     - subject: Prevent approval of forks with labels
       hash: cf016d36486f8920b85825923d891724e0c40a4c
       body: ""
