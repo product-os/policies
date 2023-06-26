@@ -16,7 +16,6 @@ approval_rules:
   - name: sudoers have approved
 
     if:
-      # exclude forks from this rule
       from_branch: &excludeForks
         pattern: "^[^:]+$"
 
@@ -44,7 +43,6 @@ approval_rules:
   - name: members have approved
 
     if:
-      # exclude forks from this rule
       from_branch:
         <<: *excludeForks
       # exclude the following repositories that require sudoers approval
@@ -79,9 +77,6 @@ approval_rules:
   - name: members have approved fork
 
     if:
-      # include forks in this rule
-      from_branch:
-        pattern: "^.+:.+$"
       repository:
         <<: *excludeRestrictedRepositories
 
@@ -105,6 +100,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "minor"
+      from_branch:
+        <<: *excludeForks
       repository:
         <<: *excludeRestrictedRepositories
 
@@ -114,6 +111,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "patch"
+      from_branch:
+        <<: *excludeForks
       repository:
         <<: *excludeRestrictedRepositories
 
@@ -123,6 +122,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "digest"
+      from_branch:
+        <<: *excludeForks
       repository:
         <<: *excludeRestrictedRepositories
 
@@ -132,6 +133,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "pinDigest"
+      from_branch:
+        <<: *excludeForks
       repository:
         <<: *excludeRestrictedRepositories
 
@@ -141,6 +144,8 @@ approval_rules:
         - "renovate"
         - "dependencies"
         - "pin"
+      from_branch:
+        <<: *excludeForks
       repository:
         <<: *excludeRestrictedRepositories
 
@@ -148,5 +153,7 @@ approval_rules:
     if:
       has_labels:
         - "no-review"
+      from_branch:
+        <<: *excludeForks
       repository:
         <<: *excludeRestrictedRepositories
