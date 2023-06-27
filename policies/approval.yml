@@ -1,18 +1,19 @@
 policy:
   approval:
     - or:
-        - sudoers have approved
-        - team members have approved
-        - team members have approved fork
-        - has renovate minor labels
-        - has renovate patch labels
-        - has renovate digest labels
-        - has renovate pinDigest labels
-        - has renovate pin labels
-        - has label no-review
+        - sudoers have approved for team member author
+        - sudoers have approved for any author
+        - team members have approved for team member author
+        - team members have approved for any author
+        - auto-approve renovate author with minor label
+        - auto-approve renovate author with patch label
+        - auto-approve renovate author with digest label
+        - auto-approve renovate author with pinDigest label
+        - auto-approve renovate author with pin label
+        - auto-approve team member author with no-review label
   disapproval:
     requires:
-      teams: &balenaTeams
+      teams: &approvalTeams
         - "balena-fleetops/balena-dev"
         - "balena-io/balena-dev"
         - "balena-io-examples/balena-dev"
@@ -28,38 +29,33 @@ policy:
         - "people-os/balena-dev"
         - "product-os/balena-dev"
     options:
-      # "methods" defines how users set and revoke disapproval.
       methods:
-        # "disapprove" sets the methods for disapproval.
         disapprove:
           comments:
             - ":-1:"
             - "👎"
           github_review: true
-        # "revoke" sets the methods for revoking disapproval. Usually, these will
-        # match the methods used by approval rules.
         revoke:
           comments: []
-          comment_patterns: &approvalPatterns
+          comment_patterns: &approvalCommentPatterns
             - "^(?i)acked(-| )by:?\\s+" # eg. Acked-by: , acked by
             - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!, i self-certify
             - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!, approve this please
-            - "^(?i)lgtm!?$" # eg. LGTM, lgtm, Lgtm
+            - "^(?i)lgtm!?$" # eg. LGTM, lgtm, Lgtm!
           github_review: true
 
 approval_rules:
-  - name: sudoers have approved
+  - name: sudoers have approved for team member author
 
     if:
-      from_branch: &excludeForks
-        pattern: "^[^:]+$"
+      has_author_in:
+        teams: *approvalTeams
 
     requires:
       count: 1
-      teams:
-        - "balenaltd/sudoers"
+      teams: ["balenaltd/sudoers"]
 
-    options: &defaultOptions
+    options: &approvalOptions
       allow_author: true
       allow_contributor: true
       invalidate_on_push: false
@@ -67,105 +63,85 @@ approval_rules:
 
       methods:
         comments: []
-        comment_patterns:
-          *approvalPatterns
+        comment_patterns: *approvalCommentPatterns
         github_review: true
 
-  - name: team members have approved
+  # invalidate on push
+  - name: sudoers have approved for any author
+
+    requires:
+      count: 1
+      teams: ["balenaltd/sudoers"]
+
+    options:
+      <<: *approvalOptions
+      invalidate_on_push: true
+
+  - name: team members have approved for team member author
 
     if:
-      from_branch:
-        <<: *excludeForks
-      repository: &excludeRestrictedRepositories
-        not_matches:
+      has_author_in:
+        teams: *approvalTeams
+      repository:
+        not_matches: &restrictedRepositories
           - "product-os/policies"
           - "balenaltd/admins"
           - ".*/.github"
 
     requires:
       count: 1
-      teams:
-        *balenaTeams
+      teams: *approvalTeams
 
     options:
-      <<: *defaultOptions
+      <<: *approvalOptions
 
-  - name: team members have approved fork
+  # invalidate on push
+  - name: team members have approved for any author
 
     if:
       repository:
-        <<: *excludeRestrictedRepositories
+        not_matches: *restrictedRepositories
 
     requires:
       count: 1
-      teams:
-        *balenaTeams
+      teams: *approvalTeams
 
     options:
-      <<: *defaultOptions
-      # invalidate on push for forks
+      <<: *approvalOptions
       invalidate_on_push: true
 
-  - name: has renovate minor labels
-    if:
-      has_labels:
-        - "renovate"
-        - "dependencies"
-        - "minor"
-      from_branch:
-        <<: *excludeForks
+  - name: auto-approve renovate author with minor label
+    if: &renovateConditions
+      has_labels: ["minor"]
+      has_author_in:
+        users: ["balena-renovate[bot]"]
       repository:
-        <<: *excludeRestrictedRepositories
+        not_matches: *restrictedRepositories
 
-  - name: has renovate patch labels
+  - name: auto-approve renovate author with patch label
     if:
-      has_labels:
-        - "renovate"
-        - "dependencies"
-        - "patch"
-      from_branch:
-        <<: *excludeForks
-      repository:
-        <<: *excludeRestrictedRepositories
+      <<: *renovateConditions
+      has_labels: ["patch"]
 
-  - name: has renovate digest labels
+  - name: auto-approve renovate author with digest label
     if:
-      has_labels:
-        - "renovate"
-        - "dependencies"
-        - "digest"
-      from_branch:
-        <<: *excludeForks
-      repository:
-        <<: *excludeRestrictedRepositories
+      <<: *renovateConditions
+      has_labels: ["digest"]
 
-  - name: has renovate pinDigest labels
+  - name: auto-approve renovate author with pinDigest label
     if:
-      has_labels:
-        - "renovate"
-        - "dependencies"
-        - "pinDigest"
-      from_branch:
-        <<: *excludeForks
-      repository:
-        <<: *excludeRestrictedRepositories
+      <<: *renovateConditions
+      has_labels: ["pinDigest"]
 
-  - name: has renovate pin labels
+  - name: auto-approve renovate author with pin label
     if:
-      has_labels:
-        - "renovate"
-        - "dependencies"
-        - "pin"
-      from_branch:
-        <<: *excludeForks
-      repository:
-        <<: *excludeRestrictedRepositories
+      <<: *renovateConditions
+      has_labels: ["pin"]
 
-  - name: has label no-review
+  - name: auto-approve team member author with no-review label
     if:
-      has_labels:
-        - "no-review"
-      from_branch:
-        <<: *excludeForks
+      has_labels: ["no-review"]
+      has_author_in:
+        teams: *approvalTeams
       repository:
-        <<: *excludeRestrictedRepositories
+        not_matches: *restrictedRepositories
