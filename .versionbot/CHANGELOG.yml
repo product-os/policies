@@ -1,4 +1,23 @@
 - commits:
+    - subject: Always invalidate on push unless the contributors are in the approval
+        group
+      hash: cbaa554d5536891e6f1ec9aebab8e4076122d52c
+      body: >
+        This prevents someone from contributing to a PR that a sudoer has
+        already
+
+        self-certified, and similar scenarios.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.5.0
+  title: ""
+  date: 2023-06-27T19:35:14.521Z
+- commits:
     - subject: Restrict approvals and authors to teams/users
       hash: 3c5d81f6fb78d7bc039e8137286f0fe28cf0aca8
       body: |
