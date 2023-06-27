@@ -1,19 +1,29 @@
 policy:
   approval:
     - or:
-        - sudoers have approved for team member author
-        - sudoers have approved for any author
-        - team members have approved for team member author
-        - team members have approved for any author
+        # for admin repositories, only sudoers team members can approve
+        - sudoers have approved sudoers contributions
+        # for admin repositories, if the contributors are not all sudoers team members, then invalidate on push
+        - sudoers have approved but invalidate on push
+        # for environment repositories, only sudoers and reliability team members can approve
+        - reliability have approved reliability contributions
+        # for environment repositories, if the contributors are not all sudoers/reliability team members, then invalidate on push
+        - reliability have approved but invalidate on push
+        # for other repositories, only balena-dev team members can approve
+        - balena-devs have approved balena-devs contributions
+        # for other repositories, if the contributors are not all balena-dev team members, then invalidate on push
+        - balena-devs have approved but invalidate on push
+        # for other repositories, allow auto-approve via labels for balena-dev team members
+        - auto-approve balena-devs contributions with no-review label
+        # for other repositories, allow auto-approve via labels for renovate user
         - auto-approve renovate author with minor label
         - auto-approve renovate author with patch label
         - auto-approve renovate author with digest label
         - auto-approve renovate author with pinDigest label
         - auto-approve renovate author with pin label
-        - auto-approve team member author with no-review label
   disapproval:
     requires:
-      teams: &approvalTeams
+      teams: &balenaDevs
         - "balena-fleetops/balena-dev"
         - "balena-io/balena-dev"
         - "balena-io-examples/balena-dev"
@@ -45,11 +55,17 @@ policy:
           github_review: true
 
 approval_rules:
-  - name: sudoers have approved for team member author
+  - name: sudoers have approved sudoers contributions
 
     if:
-      has_author_in:
-        teams: *approvalTeams
+      only_has_contributors_in:
+        teams: ["balenaltd/sudoers"]
+      repository:
+        # admin repositories require sudoers approval, and are not subject to other rules
+        matches: &adminRepositories
+          - "product-os/policies"
+          - "balenaltd/admins"
+          - ".*/.github"
 
     requires:
       count: 1
@@ -66,8 +82,12 @@ approval_rules:
         comment_patterns: *approvalCommentPatterns
         github_review: true
 
-  # invalidate on push
-  - name: sudoers have approved for any author
+  # same as above but allow any contributors and invalidate on push
+  - name: sudoers have approved but invalidate on push
+
+    if:
+      repository:
+        matches: *adminRepositories
 
     requires:
       count: 1
@@ -77,26 +97,68 @@ approval_rules:
       <<: *approvalOptions
       invalidate_on_push: true
 
-  - name: team members have approved for team member author
+  - name: reliability have approved reliability contributions
 
     if:
-      has_author_in:
-        teams: *approvalTeams
+      only_has_contributors_in:
+        teams: ["balenaltd/sudoers", "balenaltd/reliability"]
       repository:
-        not_matches: &restrictedRepositories
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
+        not_matches: *adminRepositories
+        # environment repositories require reliability/sudoers approval, and are not subject to other rules
+        matches: &environmentRepositories
+          - "balena-io/environment-production"
+          - "balena-io/environment-staging"
+          - "product-os/environment-production"
+          - "product-os/environment-staging"
 
     requires:
       count: 1
-      teams: *approvalTeams
+      teams: ["balenaltd/sudoers", "balenaltd/reliability"]
 
     options:
       <<: *approvalOptions
 
-  # invalidate on push
-  - name: team members have approved for any author
+  # same as above but allow any contributors and invalidate on push
+  - name: reliability have approved but invalidate on push
+
+    if:
+      repository:
+        not_matches: *adminRepositories
+        matches: *environmentRepositories
+
+    requires:
+      count: 1
+      teams: ["balenaltd/sudoers", "balenaltd/reliability"]
+
+    options:
+      <<: *approvalOptions
+      invalidate_on_push: true
+
+  - name: balena-devs have approved balena-devs contributions
+
+    if:
+      only_has_contributors_in:
+        teams: *balenaDevs
+      repository:
+        # restrictedRepositories should be adminRepositories + environmentRepositories
+        not_matches: &restrictedRepositories
+          - "product-os/policies"
+          - "balenaltd/admins"
+          - ".*/.github"
+          - "balena-io/environment-production"
+          - "balena-io/environment-staging"
+          - "product-os/environment-production"
+          - "product-os/environment-staging"
+
+    requires:
+      count: 1
+      teams: *balenaDevs
+
+    options:
+      <<: *approvalOptions
+
+  # same as above but allow any contributors and invalidate on push
+  - name: balena-devs have approved but invalidate on push
 
     if:
       repository:
@@ -104,11 +166,19 @@ approval_rules:
 
     requires:
       count: 1
-      teams: *approvalTeams
+      teams: *balenaDevs
 
     options:
       <<: *approvalOptions
       invalidate_on_push: true
+
+  - name: auto-approve balena-devs contributions with no-review label
+    if:
+      has_labels: ["no-review"]
+      only_has_contributors_in:
+        teams: *balenaDevs
+      repository:
+        not_matches: *restrictedRepositories
 
   - name: auto-approve renovate author with minor label
     if: &renovateConditions
@@ -116,7 +186,8 @@ approval_rules:
       has_author_in:
         users: ["balena-renovate[bot]"]
       repository:
-        not_matches: *restrictedRepositories
+        not_matches: *adminRepositories
+      author_is_only_contributor: true
 
   - name: auto-approve renovate author with patch label
     if:
@@ -137,11 +208,3 @@ approval_rules:
     if:
       <<: *renovateConditions
       has_labels: ["pin"]
-
-  - name: auto-approve team member author with no-review label
-    if:
-      has_labels: ["no-review"]
-      has_author_in:
-        teams: *approvalTeams
-      repository:
-        not_matches: *restrictedRepositories
