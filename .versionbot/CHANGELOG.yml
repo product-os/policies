@@ -1,4 +1,23 @@
 - commits:
+    - subject: Restrict approvals and authors to teams/users
+      hash: 3c5d81f6fb78d7bc039e8137286f0fe28cf0aca8
+      body: |
+        Avoid edge cases where internal branches could
+        be mistaken as forks if they contained a : character.
+
+        Also verify the balena-renovate[bot] user for auto-appoval
+        rules with labels.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.4.0
+  title: ""
+  date: 2023-06-27T18:01:21.627Z
+- commits:
     - subject: Add global disapproval condition for all team members
       hash: 444ea81d212c1ffe32a6b4153badb10291c478e2
       body: |
