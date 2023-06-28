@@ -1,4 +1,20 @@
 - commits:
+    - subject: Remove admin repo negative match from reliability rules
+      hash: b597bbf41e842bc15ed4b410ec41a5e878d4a0ec
+      body: |
+        When both matches and not_matches are present, it is treated
+        as OR, not AND, so there is no need for both.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.5.1
+  title: ""
+  date: 2023-06-28T13:07:45.844Z
+- commits:
     - subject: Always invalidate on push unless the contributors are in the approval
         group
       hash: cbaa554d5536891e6f1ec9aebab8e4076122d52c
