@@ -103,7 +103,6 @@ approval_rules:
       only_has_contributors_in:
         teams: ["balenaltd/sudoers", "balenaltd/reliability"]
       repository:
-        not_matches: *adminRepositories
         # environment repositories require reliability/sudoers approval, and are not subject to other rules
         matches: &environmentRepositories
           - "balena-io/environment-production"
@@ -123,7 +122,6 @@ approval_rules:
 
     if:
       repository:
-        not_matches: *adminRepositories
         matches: *environmentRepositories
 
     requires:
