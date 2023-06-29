@@ -13,8 +13,8 @@ policy:
         - balena-devs have approved balena-devs contributions
         # for other repositories, if the contributors are not all balena-dev team members, then invalidate on push
         - balena-devs have approved but invalidate on push
-        # for other repositories, allow auto-approve via labels for balena-dev team members
-        - auto-approve balena-devs contributions with no-review label
+        # for other repositories, allow auto-approve via labels for team members and some bots
+        - auto-approve contributions with no-review label
         # for other repositories, allow auto-approve via labels for renovate user
         - auto-approve renovate author with minor label
         - auto-approve renovate author with patch label
@@ -170,13 +170,16 @@ approval_rules:
       <<: *approvalOptions
       invalidate_on_push: true
 
-  - name: auto-approve balena-devs contributions with no-review label
+  - name: auto-approve contributions with no-review label
     if:
       has_labels: ["no-review"]
       only_has_contributors_in:
+        users:
+          - "balena-renovate[bot]"
+          - "flowzone-app[bot]"
         teams: *balenaDevs
       repository:
-        not_matches: *restrictedRepositories
+        not_matches: *adminRepositories
 
   - name: auto-approve renovate author with minor label
     if: &renovateConditions
