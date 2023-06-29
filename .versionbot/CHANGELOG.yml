@@ -1,4 +1,18 @@
 - commits:
+    - subject: Allow certain bots to use no-review labels
+      hash: 226d881d5ba89a4cfd0218b26c0f263c532b8efb
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.5.2
+  title: ""
+  date: 2023-06-29T17:13:51.244Z
+- commits:
     - subject: Remove admin repo negative match from reliability rules
       hash: b597bbf41e842bc15ed4b410ec41a5e878d4a0ec
       body: |
