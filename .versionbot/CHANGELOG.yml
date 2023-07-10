@@ -1,4 +1,15 @@
 - commits:
+    - subject: workaround for missing pushDate
+      hash: 34d4bebd403b6dcd0d5229600254716d12c85643
+      body: ""
+      footer:
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.5.3
+  title: ""
+  date: 2023-07-10T14:43:27.071Z
+- commits:
     - subject: Allow certain bots to use no-review labels
       hash: 226d881d5ba89a4cfd0218b26c0f263c532b8efb
       body: ""
