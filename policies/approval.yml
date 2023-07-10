@@ -95,7 +95,8 @@ approval_rules:
 
     options:
       <<: *approvalOptions
-      invalidate_on_push: true
+      # FIXME: set true after https://github.com/palantir/policy-bot/pull/602 merges
+      invalidate_on_push: false
 
   - name: reliability have approved reliability contributions
 
@@ -130,7 +131,8 @@ approval_rules:
 
     options:
       <<: *approvalOptions
-      invalidate_on_push: true
+      # FIXME: set true after https://github.com/palantir/policy-bot/pull/602 merges
+      invalidate_on_push: false
 
   - name: balena-devs have approved balena-devs contributions
 
@@ -168,7 +170,8 @@ approval_rules:
 
     options:
       <<: *approvalOptions
-      invalidate_on_push: true
+      # FIXME: set true after https://github.com/palantir/policy-bot/pull/602 merges
+      invalidate_on_push: false
 
   - name: auto-approve contributions with no-review label
     if:
