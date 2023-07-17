@@ -66,6 +66,9 @@ approval_rules:
           - "product-os/policies"
           - "balenaltd/admins"
           - ".*/.github"
+          - "balena-io/renovate-config"
+          - "balena-os/renovate-config"
+          - "product-os/renovate-config"
 
     requires:
       count: 1
@@ -145,6 +148,9 @@ approval_rules:
           - "product-os/policies"
           - "balenaltd/admins"
           - ".*/.github"
+          - "balena-io/renovate-config"
+          - "balena-os/renovate-config"
+          - "product-os/renovate-config"
           - "balena-io/environment-production"
           - "balena-io/environment-staging"
           - "product-os/environment-production"
