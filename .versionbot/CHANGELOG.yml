@@ -1,4 +1,18 @@
 - commits:
+    - subject: Require sudoer approval for renovate-config repositories
+      hash: 39063d81cfb75f43ae6540b6625c4f8480f4cf77
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.5.4
+  title: ""
+  date: 2023-07-17T15:41:44.353Z
+- commits:
     - subject: workaround for missing pushDate
       hash: 34d4bebd403b6dcd0d5229600254716d12c85643
       body: ""
