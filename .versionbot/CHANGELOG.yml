@@ -1,4 +1,18 @@
 - commits:
+    - subject: Require write permissions for approvals
+      hash: a8e46351621df3e610fcabb707b0bc9bad03e608
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.5.5
+  title: ""
+  date: 2023-07-30T18:40:43.293Z
+- commits:
     - subject: Require sudoer approval for renovate-config repositories
       hash: 39063d81cfb75f43ae6540b6625c4f8480f4cf77
       body: ""
