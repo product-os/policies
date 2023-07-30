@@ -38,6 +38,7 @@ policy:
         - "company-os/balena-dev"
         - "people-os/balena-dev"
         - "product-os/balena-dev"
+      permissions: ["write"]
     options:
       methods:
         disapprove:
@@ -73,6 +74,7 @@ approval_rules:
     requires:
       count: 1
       teams: ["balenaltd/sudoers"]
+      permissions: ["write"]
 
     options: &approvalOptions
       allow_author: true
@@ -95,6 +97,7 @@ approval_rules:
     requires:
       count: 1
       teams: ["balenaltd/sudoers"]
+      permissions: ["write"]
 
     options:
       <<: *approvalOptions
@@ -117,6 +120,7 @@ approval_rules:
     requires:
       count: 1
       teams: ["balenaltd/sudoers", "balenaltd/reliability"]
+      permissions: ["write"]
 
     options:
       <<: *approvalOptions
@@ -131,6 +135,7 @@ approval_rules:
     requires:
       count: 1
       teams: ["balenaltd/sudoers", "balenaltd/reliability"]
+      permissions: ["write"]
 
     options:
       <<: *approvalOptions
@@ -159,6 +164,7 @@ approval_rules:
     requires:
       count: 1
       teams: *balenaDevs
+      permissions: ["write"]
 
     options:
       <<: *approvalOptions
@@ -173,6 +179,7 @@ approval_rules:
     requires:
       count: 1
       teams: *balenaDevs
+      permissions: ["write"]
 
     options:
       <<: *approvalOptions
