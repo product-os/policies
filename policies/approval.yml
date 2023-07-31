@@ -1,43 +1,16 @@
 policy:
   approval:
     - or:
-        # for admin repositories, only sudoers team members can approve
-        - sudoers have approved sudoers contributions
-        # for admin repositories, if the contributors are not all sudoers team members, then invalidate on push
-        - sudoers have approved but invalidate on push
-        # for environment repositories, only sudoers and reliability team members can approve
-        - reliability have approved reliability contributions
-        # for environment repositories, if the contributors are not all sudoers/reliability team members, then invalidate on push
-        - reliability have approved but invalidate on push
-        # for other repositories, only balena-dev team members can approve
-        - balena-devs have approved balena-devs contributions
-        # for other repositories, if the contributors are not all balena-dev team members, then invalidate on push
-        - balena-devs have approved but invalidate on push
-        # for other repositories, allow auto-approve via labels for team members and some bots
-        - auto-approve contributions with no-review label
-        # for other repositories, allow auto-approve via labels for renovate user
-        - auto-approve renovate author with minor label
-        - auto-approve renovate author with patch label
-        - auto-approve renovate author with digest label
-        - auto-approve renovate author with pinDigest label
-        - auto-approve renovate author with pin label
+        - reviewers have approved internal contributions
+        - reviewers have approved with invalidate on push
+        - auto-approved via no-review label
+        - auto-approved via minor label
+        - auto-approved via patch label
+        - auto-approved via digest label
+        - auto-approved via pinDigest label
+        - auto-approved via pin label
   disapproval:
     requires:
-      teams: &balenaDevs
-        - "balena-fleetops/balena-dev"
-        - "balena-io/balena-dev"
-        - "balena-io-examples/balena-dev"
-        - "balena-io-experimental/balena-dev"
-        - "balena-io-hardware/balena-dev"
-        - "balena-io-library/resin-dev"
-        - "balena-io-modules/balena-dev"
-        - "balena-labs-projects/balena-dev"
-        - "balena-labs-research/balena-dev"
-        - "balena-os/balena-dev"
-        - "balenablocks/balena"
-        - "company-os/balena-dev"
-        - "people-os/balena-dev"
-        - "product-os/balena-dev"
       permissions: ["write"]
     options:
       methods:
@@ -56,27 +29,18 @@ policy:
           github_review: true
 
 approval_rules:
-  - name: sudoers have approved sudoers contributions
+  - name: reviewers have approved internal contributions
 
     if:
-      only_has_contributors_in:
-        teams: ["balenaltd/sudoers"]
-      repository:
-        # admin repositories require sudoers approval, and are not subject to other rules
-        matches: &adminRepositories
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
-          - "balena-io/renovate-config"
-          - "balena-os/renovate-config"
-          - "product-os/renovate-config"
+      # exclude forks from this rule
+      from_branch:
+        pattern: "^[^:]+$"
 
     requires:
       count: 1
-      teams: ["balenaltd/sudoers"]
       permissions: ["write"]
 
-    options: &approvalOptions
+    options:
       allow_author: true
       allow_contributor: true
       invalidate_on_push: false
@@ -87,117 +51,41 @@ approval_rules:
         comment_patterns: *approvalCommentPatterns
         github_review: true
 
-  # same as above but allow any contributors and invalidate on push
-  - name: sudoers have approved but invalidate on push
-
-    if:
-      repository:
-        matches: *adminRepositories
+  - name: reviewers have approved with invalidate on push
 
     requires:
       count: 1
-      teams: ["balenaltd/sudoers"]
       permissions: ["write"]
 
     options:
-      <<: *approvalOptions
+      allow_author: true
+      allow_contributor: true
       # FIXME: set true after https://github.com/palantir/policy-bot/pull/602 merges
       invalidate_on_push: false
+      ignore_edited_comments: true
 
-  - name: reliability have approved reliability contributions
+      methods:
+          comments: []
+          comment_patterns: *approvalCommentPatterns
+          github_review: true
 
-    if:
-      only_has_contributors_in:
-        teams: ["balenaltd/sudoers", "balenaltd/reliability"]
-      repository:
-        # environment repositories require reliability/sudoers approval, and are not subject to other rules
-        matches: &environmentRepositories
-          - "balena-io/environment-production"
-          - "balena-io/environment-staging"
-          - "product-os/environment-production"
-          - "product-os/environment-staging"
-
-    requires:
-      count: 1
-      teams: ["balenaltd/sudoers", "balenaltd/reliability"]
-      permissions: ["write"]
-
-    options:
-      <<: *approvalOptions
-
-  # same as above but allow any contributors and invalidate on push
-  - name: reliability have approved but invalidate on push
-
-    if:
-      repository:
-        matches: *environmentRepositories
-
-    requires:
-      count: 1
-      teams: ["balenaltd/sudoers", "balenaltd/reliability"]
-      permissions: ["write"]
-
-    options:
-      <<: *approvalOptions
-      # FIXME: set true after https://github.com/palantir/policy-bot/pull/602 merges
-      invalidate_on_push: false
-
-  - name: balena-devs have approved balena-devs contributions
-
-    if:
-      only_has_contributors_in:
-        teams: *balenaDevs
-      repository:
-        # restrictedRepositories should be adminRepositories + environmentRepositories
-        not_matches: &restrictedRepositories
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
-          - "balena-io/renovate-config"
-          - "balena-os/renovate-config"
-          - "product-os/renovate-config"
-          - "balena-io/environment-production"
-          - "balena-io/environment-staging"
-          - "product-os/environment-production"
-          - "product-os/environment-staging"
-
-    requires:
-      count: 1
-      teams: *balenaDevs
-      permissions: ["write"]
-
-    options:
-      <<: *approvalOptions
-
-  # same as above but allow any contributors and invalidate on push
-  - name: balena-devs have approved but invalidate on push
-
-    if:
-      repository:
-        not_matches: *restrictedRepositories
-
-    requires:
-      count: 1
-      teams: *balenaDevs
-      permissions: ["write"]
-
-    options:
-      <<: *approvalOptions
-      # FIXME: set true after https://github.com/palantir/policy-bot/pull/602 merges
-      invalidate_on_push: false
-
-  - name: auto-approve contributions with no-review label
+  - name: auto-approved via no-review label
     if:
       has_labels: ["no-review"]
       only_has_contributors_in:
         users:
           - "balena-renovate[bot]"
           - "flowzone-app[bot]"
-        teams: *balenaDevs
       repository:
-        not_matches: *adminRepositories
+        not_matches: &adminRepositories
+          - "product-os/policies"
+          - "balenaltd/admins"
+          - ".*/.github"
+          - "balena-io/renovate-config"
+          - "balena-os/renovate-config"
+          - "product-os/renovate-config"
 
-  - name: auto-approve renovate author with minor label
+  - name: auto-approved via minor label
     if: &renovateConditions
       has_labels: ["minor"]
       has_author_in:
@@ -206,22 +94,22 @@ approval_rules:
         not_matches: *adminRepositories
       author_is_only_contributor: true
 
-  - name: auto-approve renovate author with patch label
+  - name: auto-approved via patch label
     if:
       <<: *renovateConditions
       has_labels: ["patch"]
 
-  - name: auto-approve renovate author with digest label
+  - name: auto-approved via digest label
     if:
       <<: *renovateConditions
       has_labels: ["digest"]
 
-  - name: auto-approve renovate author with pinDigest label
+  - name: auto-approved via pinDigest label
     if:
       <<: *renovateConditions
       has_labels: ["pinDigest"]
 
-  - name: auto-approve renovate author with pin label
+  - name: auto-approved via pin label
     if:
       <<: *renovateConditions
       has_labels: ["pin"]
