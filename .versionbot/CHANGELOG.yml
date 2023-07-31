@@ -1,4 +1,21 @@
 - commits:
+    - subject: Remove team restrictions and rely on write permissions check
+      hash: f324fd2580460fe5057c56a9655150a3976e2690
+      body: |
+        Going forward, some repositories have limited write access to
+        certain teams, and rather than maintain that logic here we can
+        just check for write access.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.6.0
+  title: ""
+  date: 2023-07-31T15:59:50.303Z
+- commits:
     - subject: Require write permissions for approvals
       hash: a8e46351621df3e610fcabb707b0bc9bad03e608
       body: ""
