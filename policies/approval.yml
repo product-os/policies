@@ -60,8 +60,7 @@ approval_rules:
     options:
       allow_author: true
       allow_contributor: true
-      # FIXME: set true after https://github.com/palantir/policy-bot/pull/602 merges
-      invalidate_on_push: false
+      invalidate_on_push: true
       ignore_edited_comments: true
 
       methods:
