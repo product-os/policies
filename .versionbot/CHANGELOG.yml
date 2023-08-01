@@ -1,4 +1,23 @@
 - commits:
+    - subject: Re-enable invalidate on push for external contributions
+      hash: c403405182b2d3d4bfb50199127a1ee4309b88e1
+      body: |
+        See: https://github.com/palantir/policy-bot/pull/602
+
+        See: https://github.com/product-os/policy-bot/pull/4
+
+        See: https://github.com/product-os/environment-production/pull/623
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.6.1
+  title: ""
+  date: 2023-08-01T13:09:45.396Z
+- commits:
     - subject: Remove team restrictions and rely on write permissions check
       hash: f324fd2580460fe5057c56a9655150a3976e2690
       body: |
