@@ -4,11 +4,7 @@ policy:
         - reviewers have approved internal contributions
         - reviewers have approved with invalidate on push
         - auto-approved via no-review label
-        - auto-approved via minor label
-        - auto-approved via patch label
-        - auto-approved via digest label
-        - auto-approved via pinDigest label
-        - auto-approved via pin label
+        - auto-approved via author is bot
   disapproval:
     requires:
       permissions: ["write"]
@@ -71,10 +67,6 @@ approval_rules:
   - name: auto-approved via no-review label
     if:
       has_labels: ["no-review"]
-      only_has_contributors_in:
-        users:
-          - "balena-renovate[bot]"
-          - "flowzone-app[bot]"
       repository:
         not_matches: &adminRepositories
           - "product-os/policies"
@@ -84,31 +76,12 @@ approval_rules:
           - "balena-os/renovate-config"
           - "product-os/renovate-config"
 
-  - name: auto-approved via minor label
-    if: &renovateConditions
-      has_labels: ["minor"]
+  - name: auto-approved via author is bot
+    if:
       has_author_in:
-        users: ["balena-renovate[bot]"]
+        users:
+          - "balena-renovate[bot]"
+          - "flowzone-app[bot]"
       repository:
         not_matches: *adminRepositories
       author_is_only_contributor: true
-
-  - name: auto-approved via patch label
-    if:
-      <<: *renovateConditions
-      has_labels: ["patch"]
-
-  - name: auto-approved via digest label
-    if:
-      <<: *renovateConditions
-      has_labels: ["digest"]
-
-  - name: auto-approved via pinDigest label
-    if:
-      <<: *renovateConditions
-      has_labels: ["pinDigest"]
-
-  - name: auto-approved via pin label
-    if:
-      <<: *renovateConditions
-      has_labels: ["pin"]
