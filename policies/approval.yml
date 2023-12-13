@@ -1,8 +1,9 @@
 policy:
   approval:
     - or:
-        - reviewers have approved internal contributions
-        - reviewers have approved with invalidate on push
+        - approved via self-certify or review
+        - approved via non-author review
+        - approved via non-author review with invalidate on push
         - auto-approved via no-review label
         - auto-approved via author is bot
   disapproval:
@@ -25,19 +26,24 @@ policy:
           github_review: true
 
 approval_rules:
-  - name: reviewers have approved internal contributions
+  # exclude forks, exclude balena-io, allow comments, allow self-certify
+  - name: approved via self-certify or review
 
     if:
       # exclude forks from this rule
       from_branch:
         pattern: "^[^:]+$"
+      # exclude balena-io from this rule
+      repository:
+        not_matches:
+          - "balena-io/.*"
 
     requires:
       count: 1
       permissions: ["write"]
 
     options:
-      allow_author: true
+      allow_author: false
       allow_contributor: true
       invalidate_on_push: false
       ignore_edited_comments: true
@@ -47,22 +53,51 @@ approval_rules:
         comment_patterns: *approvalCommentPatterns
         github_review: true
 
-  - name: reviewers have approved with invalidate on push
+  # exclude forks, allow balena-io, allow comments, disable self-certify
+  - name: approved via non-author review
+
+    if:
+      # exclude forks from this rule
+      from_branch:
+        pattern: "^[^:]+$"
+
+      # allow balena-io in this rule
 
     requires:
       count: 1
       permissions: ["write"]
 
     options:
-      allow_author: true
+      allow_author: false
+      allow_contributor: true
+      invalidate_on_push: false
+      ignore_edited_comments: true
+
+      methods:
+        comments: []
+        comment_patterns: *approvalCommentPatterns
+        github_review: true
+
+  # allow forks, allow balena-io, allow comments, disable self-certify, invalidate on push
+  - name: approved via non-author review with invalidate on push
+
+    # allow forks in this rule
+    # allow balena-io in this rule
+
+    requires:
+      count: 1
+      permissions: ["write"]
+
+    options:
+      allow_author: false
       allow_contributor: true
       invalidate_on_push: true
       ignore_edited_comments: true
 
       methods:
-          comments: []
-          comment_patterns: *approvalCommentPatterns
-          github_review: true
+        comments: []
+        comment_patterns: *approvalCommentPatterns
+        github_review: true
 
   - name: auto-approved via no-review label
     if:
