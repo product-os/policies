@@ -19,8 +19,6 @@ policy:
           comments: []
           comment_patterns: &approvalCommentPatterns
             - "^(?i)acked(-| )by:?\\s+" # eg. Acked-by: , acked by
-            - "^(?i)(@balena-ci\\s+)?i self-certify!?$" # eg. @balena-ci I self-certify!, i self-certify
-            - "^(?i)(@balena-ci\\s+)?approve this please!?$" # eg. @balena-ci Approve this please!, approve this please
             - "^(?i)lgtm!?$" # eg. LGTM, lgtm, Lgtm!
           github_review: true
 
@@ -37,7 +35,7 @@ approval_rules:
       permissions: ["write"]
 
     options:
-      allow_author: true
+      allow_author: false
       allow_contributor: true
       invalidate_on_push: false
       ignore_edited_comments: true
