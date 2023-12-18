@@ -1,4 +1,35 @@
 - commits:
+    - subject: Apply no-self-certify policy to balena-io
+      hash: a1f18871be1955a1d108157c9ce5286d31e65ff0
+      body: |
+        By setting allow_author to false we are excluding
+        the author of the PR from any forms of approval.
+
+        Non-authors can still approve via the existing supported methods.
+
+        This is required to meet ISO and intentional work
+        guidelines for security compliance.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Allow separate policy sync definitions per org
+      hash: e7718602c16c6d25b1872c8b4fe3a019bd4b2422
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.1
+  title: ""
+  date: 2023-12-18T11:08:21.518Z
+- commits:
     - subject: Auto-approve if the author is a bot
       hash: 77881783c70837906e7a7b1be3ce1b946dedf62d
       body: |
