@@ -1,5 +1,5 @@
 # https://github.com/marketplace/actions/repo-file-sync-action
-$DESTINATION_REPO:
-  - source: policies/
-    dest: policies/
+balena-os/.github:
+  - source: policies/approval.yml
+    dest: policies/approval.yml
     deleteOrphaned: true

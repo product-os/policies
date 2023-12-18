@@ -1,0 +1,5 @@
+# https://github.com/marketplace/actions/repo-file-sync-action
+balena-labs-research/.github:
+  - source: policies/approval.yml
+    dest: policies/approval.yml
+    deleteOrphaned: true

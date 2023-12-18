@@ -51,14 +51,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Update sync.yml
-        working-directory: .github
-        env:
-          DESTINATION_REPO: ${{ matrix.org }}/.github
-        run: |
-          envsubst < sync.yml.tmpl > sync.yml
-          cat sync.yml
-
       # https://github.com/marketplace/actions/repo-file-sync-action
       - name: Sync files
         uses: BetaHuhn/repo-file-sync-action@v1.21.0
@@ -70,3 +62,4 @@ jobs:
           COMMIT_EACH_FILE: false
           DRY_RUN: ${{ github.event_name == 'pull_request' }}
           COMMIT_BODY: "Change-type: patch"
+          CONFIG_PATH: .github/${{ matrix.org }}.yml
