@@ -1,4 +1,20 @@
 - commits:
+    - subject: Fix cases where authors were still allowed to self-certify
+      hash: 3816387207ef4558632e4cf655f1f0a02a6589ad
+      body: |
+        According to the docs both allow_contributor and allow_author need
+        to be aligned in order to disallow authors.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.2
+  title: ""
+  date: 2023-12-19T14:34:11.288Z
+- commits:
     - subject: Apply no-self-certify policy to balena-io
       hash: a1f18871be1955a1d108157c9ce5286d31e65ff0
       body: |
