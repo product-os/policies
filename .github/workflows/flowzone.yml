@@ -1,18 +1,13 @@
 name: Flowzone
-
 on:
   pull_request:
     types: [opened, synchronize, closed]
     branches:
       - "main"
-
 jobs:
   flowzone:
     name: Flowzone
     uses: product-os/flowzone/.github/workflows/flowzone.yml@master
     secrets: inherit
     with:
-      repo_config: true
-      repo_default_branch: "main"
-      repo_description: "Source of truth for policy-bot configuration for the balena organization."
       required_approving_review_count: 0
