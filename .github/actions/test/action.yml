@@ -15,7 +15,8 @@ runs:
       shell: bash
       env:
         DOMAIN: https://policy-bot.product-os.io
-        POLICY_PATH: policies/approval.yml
       run: |
-        rcode=$(curl "${DOMAIN}/api/validate" -XPUT -T "${POLICY_PATH}" -s -w "%{http_code}" -o /tmp/response)
-        if [[ "${rcode}" -gt 299 ]]; then cat /tmp/response && exit 1; fi
+        set -x -o pipefail
+
+        find policies -name '*.y*ml' \
+          | xargs -I{} curl --fail ${DOMAIN}/api/validate -XPUT -T {}

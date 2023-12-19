@@ -3,7 +3,6 @@ policy:
     - or:
         - reviewers have approved internal contributions
         - reviewers have approved with invalidate on push
-        - auto-approved via no-review label
         - auto-approved via author is bot
   disapproval:
     requires:
