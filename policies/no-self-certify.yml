@@ -35,8 +35,15 @@ approval_rules:
       permissions: ["write"]
 
     options:
+      # disable self-certify
+      # If true, approvals by the author of a pull request are considered when
+      # calculating the status. False by default.
       allow_author: false
-      allow_contributor: true
+      # If true, the approvals of someone who has committed to the pull request are
+      # considered when calculating the status. The pull request author is considered
+      # a contributor. If allow_author and allow_contributor would disagree, this option
+      # always wins. False by default.
+      allow_contributor: false
       invalidate_on_push: false
       ignore_edited_comments: true
 
@@ -52,15 +59,22 @@ approval_rules:
       permissions: ["write"]
 
     options:
+      # disable self-certify
+      # If true, approvals by the author of a pull request are considered when
+      # calculating the status. False by default.
       allow_author: false
-      allow_contributor: true
+      # If true, the approvals of someone who has committed to the pull request are
+      # considered when calculating the status. The pull request author is considered
+      # a contributor. If allow_author and allow_contributor would disagree, this option
+      # always wins. False by default.
+      allow_contributor: false
       invalidate_on_push: true
       ignore_edited_comments: true
 
       methods:
-          comments: []
-          comment_patterns: *approvalCommentPatterns
-          github_review: true
+        comments: []
+        comment_patterns: *approvalCommentPatterns
+        github_review: true
 
   - name: auto-approved via no-review label
     if:

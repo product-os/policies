@@ -47,6 +47,8 @@ approval_rules:
         comment_patterns: *approvalCommentPatterns
         github_review: true
 
+  # forks are allowed in this block so the rules are strict
+  # like invalidate on push and no self-certify
   - name: reviewers have approved with invalidate on push
 
     requires:
@@ -54,8 +56,15 @@ approval_rules:
       permissions: ["write"]
 
     options:
+      # disable self-certify
+      # If true, approvals by the author of a pull request are considered when
+      # calculating the status. False by default.
       allow_author: false
-      allow_contributor: true
+      # If true, the approvals of someone who has committed to the pull request are
+      # considered when calculating the status. The pull request author is considered
+      # a contributor. If allow_author and allow_contributor would disagree, this option
+      # always wins. False by default.
+      allow_contributor: false
       invalidate_on_push: true
       ignore_edited_comments: true
 
