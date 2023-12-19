@@ -76,18 +76,6 @@ approval_rules:
         comment_patterns: *approvalCommentPatterns
         github_review: true
 
-  - name: auto-approved via no-review label
-    if:
-      has_labels: ["no-review"]
-      repository:
-        not_matches: &adminRepositories
-          - "product-os/policies"
-          - "balenaltd/admins"
-          - ".*/.github"
-          - "balena-io/renovate-config"
-          - "balena-os/renovate-config"
-          - "product-os/renovate-config"
-
   - name: auto-approved via author is bot
     if:
       has_author_in:
@@ -95,5 +83,11 @@ approval_rules:
           - "balena-renovate[bot]"
           - "flowzone-app[bot]"
       repository:
-        not_matches: *adminRepositories
+        not_matches:
+          - "product-os/policies"
+          - "balenaltd/admins"
+          - ".*/.github"
+          - "balena-io/renovate-config"
+          - "balena-os/renovate-config"
+          - "product-os/renovate-config"
       author_is_only_contributor: true
