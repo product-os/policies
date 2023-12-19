@@ -1,4 +1,20 @@
 - commits:
+    - subject: Do not allow review via labels where self-certify is disabled
+      hash: 0b3d2bbe05399676c128ece76c7e51633b593827
+      body: |
+        Anyone with write access can add labels so this is just
+        closing a loophole where labels could be added to self-certify.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.3
+  title: ""
+  date: 2023-12-19T22:04:03.901Z
+- commits:
     - subject: Fix cases where authors were still allowed to self-certify
       hash: 3816387207ef4558632e4cf655f1f0a02a6589ad
       body: |
