@@ -1,4 +1,15 @@
 - commits:
+    - subject: correct policy and add test
+      hash: ed867bffc1a593e0a1682b49402f9bbb7f950b78
+      body: ""
+      footer:
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.7.4
+  title: ""
+  date: 2023-12-19T22:55:46.882Z
+- commits:
     - subject: Do not allow review via labels where self-certify is disabled
       hash: 0b3d2bbe05399676c128ece76c7e51633b593827
       body: |
