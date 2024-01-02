@@ -1,4 +1,22 @@
 - commits:
+    - subject: Allow contributions from multiple bots
+      hash: 7fb0b6bd8eec099a087908f44c1a0f54fea5bc88
+      body: |
+        If multiple bots contribute to a PR it should
+        still pass the auto-approve conditions. As long
+        as a user isn't piggy-backing on the auto-approved
+        changes.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.7
+  title: ""
+  date: 2024-01-02T18:24:04.543Z
+- commits:
     - subject: Allow bots to auto-approve PRs on renovate config repos
       hash: 833bae3ed2f35d7eb5841115e685bc88129fbfb9
       body: ""
