@@ -1,4 +1,18 @@
 - commits:
+    - subject: Allow bots to auto-approve PRs on renovate config repos
+      hash: 833bae3ed2f35d7eb5841115e685bc88129fbfb9
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.6
+  title: ""
+  date: 2024-01-02T17:57:19.589Z
+- commits:
     - subject: Remove repo config from flowzone.yml
       hash: 66d7f06a5bf798c47016e0c1c4d47a1d7799ff78
       body: |
