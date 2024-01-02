@@ -95,4 +95,8 @@ approval_rules:
         not_matches:
           - "product-os/policies"
           - "balenaltd/admins"
-      author_is_only_contributor: true
+      only_has_contributors_in:
+        users:
+          - "balena-renovate[bot]"
+          - "flowzone-app[bot]"
+          - "github-actions[bot]"
