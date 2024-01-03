@@ -1,4 +1,18 @@
 - commits:
+    - subject: Include documentation regarding edited comments
+      hash: fdf11ea30ef06081b3a7c36b34cbc162ddff9b07
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.8
+  title: ""
+  date: 2024-01-03T18:20:21.917Z
+- commits:
     - subject: Allow contributions from multiple bots
       hash: 7fb0b6bd8eec099a087908f44c1a0f54fea5bc88
       body: |
