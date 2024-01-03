@@ -39,7 +39,14 @@ approval_rules:
     options:
       allow_author: true
       allow_contributor: true
+      # If true, pushing new commits to a pull request will invalidate existing
+      # approvals for this rule. False by default.
       invalidate_on_push: false
+      # If true, comments on PRs, the PR Body, and review comments that have been edited in any way
+      # will be ignored when evaluating approval rules.
+      # GitHub users with sufficient permissions can edit the comments of other users, possibly
+      # changing an unrelated comment into one that enables approval.
+      # See https://github.com/palantir/policy-bot#comment-edits
       ignore_edited_comments: true
 
       methods:
@@ -65,7 +72,14 @@ approval_rules:
       # a contributor. If allow_author and allow_contributor would disagree, this option
       # always wins. False by default.
       allow_contributor: false
+      # If true, pushing new commits to a pull request will invalidate existing
+      # approvals for this rule. False by default.
       invalidate_on_push: true
+      # If true, comments on PRs, the PR Body, and review comments that have been edited in any way
+      # will be ignored when evaluating approval rules. False by default.
+      # GitHub users with sufficient permissions can edit the comments of other users, possibly
+      # changing an unrelated comment into one that enables approval.
+      # See https://github.com/palantir/policy-bot#comment-edits
       ignore_edited_comments: true
 
       methods:
