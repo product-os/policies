@@ -1,5 +1,0 @@
-# https://github.com/marketplace/actions/repo-file-sync-action
-balenalabs-incubator/.github:
-  - source: policies/approval.yml
-    dest: policies/approval.yml
-    deleteOrphaned: true
