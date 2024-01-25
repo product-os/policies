@@ -1,4 +1,26 @@
 - commits:
+    - subject: Remove unsupported Flowzone options
+      hash: ea37913214a8903fe49963a543c24dc6bd789f70
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Kyle Harding
+      nested: []
+    - subject: Remove deprecated orgs from sync policies
+      hash: c168da6bbd72cb1f134faf12de20f6df575ab094
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.9
+  title: ""
+  date: 2024-01-25T15:01:40.979Z
+- commits:
     - subject: Include documentation regarding edited comments
       hash: fdf11ea30ef06081b3a7c36b34cbc162ddff9b07
       body: ""
