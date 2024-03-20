@@ -1,4 +1,17 @@
 - commits:
+    - subject: do not want production changes auto approved
+      hash: a5c7bcc372a9b392b78c5ffc6802603deefc1c13
+      body: >
+        * prevents policy-bot from auto-approving
+        environment-{production,restricted}
+      footer:
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 1.7.10
+  title: ""
+  date: 2024-03-20T01:23:35.360Z
+- commits:
     - subject: Remove unsupported Flowzone options
       hash: ea37913214a8903fe49963a543c24dc6bd789f70
       body: ""
