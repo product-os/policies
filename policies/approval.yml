@@ -109,6 +109,8 @@ approval_rules:
         not_matches:
           - "product-os/policies"
           - "balenaltd/admins"
+          - "balena-io/environment-production"
+          - "balena-io/environment-restricted"
       only_has_contributors_in:
         users:
           - "balena-renovate[bot]"
