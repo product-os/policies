@@ -15,7 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         org:
-          - balena-fleetops
           - balena-io
           - balena-io-examples
           - balena-io-experimental
@@ -32,7 +31,6 @@ jobs:
           - company-os
           - people-os
           - product-os
-          - product-os-test
 
     steps:
       # https://github.com/philips-software/app-token-action
