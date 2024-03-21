@@ -77,6 +77,12 @@ approval_rules:
       # If true, pushing new commits to a pull request will invalidate existing
       # approvals for this rule. False by default.
       invalidate_on_push: true
+      # If true, "update merges" do not invalidate approval (if invalidate_on_push
+      # is enabled) and their authors/committers do not count as contributors. An
+      # "update merge" is a merge commit that was created in the UI or via the API
+      # and merges the target branch into the pull request branch. These are
+      # commonly created by using the "Update branch" button in the UI.
+      ignore_update_merges: true
       # If true, comments on PRs, the PR Body, and review comments that have been edited in any way
       # will be ignored when evaluating approval rules. False by default.
       # GitHub users with sufficient permissions can edit the comments of other users, possibly
