@@ -1,4 +1,23 @@
 - commits:
+    - subject: Remove sync push workflow
+      hash: 9121a96499ad1d2e24f1af7d9f145ac741dfbdc4
+      body: |
+        This workflow was added to push policy changes to
+        all orgs in the enterprise, but it depends on a static
+        list of organizations and the policy to apply.
+
+        Instead we will move to a pull action in each org.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.12
+  title: ""
+  date: 2024-04-05T20:31:19.472Z
+- commits:
     - subject: Update repositories excluded from auto-approval of bots
       hash: df94fdb33a56bffe06835d97d23848562abe3122
       body: ""
