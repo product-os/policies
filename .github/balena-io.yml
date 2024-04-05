@@ -1,5 +1,0 @@
-# https://github.com/marketplace/actions/repo-file-sync-action
-balena-io/.github:
-  - source: policies/no-self-certify.yml
-    dest: policies/approval.yml
-    deleteOrphaned: true
