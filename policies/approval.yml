@@ -93,7 +93,7 @@ approval_rules:
       repository:
         not_matches:
           - "product-os/policies"
-          - "balenaltd/admins"
+          - "product-os/admins"
           - ".*/.github"
           - "balena-io/renovate-config"
           - "balena-os/renovate-config"
@@ -108,7 +108,8 @@ approval_rules:
       repository:
         not_matches:
           - "product-os/policies"
-          - "balenaltd/admins"
+          - "product-os/admins"
+          - ".*/.github"
           - "balena-io/environment-production"
           - "balena-io/environment-restricted"
       only_has_contributors_in:
