@@ -110,7 +110,6 @@ approval_rules:
           - "product-os/policies"
           - "product-os/admins"
           - ".*/.github"
-          - "balena-io/environment-production"
           - "balena-io/environment-restricted"
       only_has_contributors_in:
         users:
