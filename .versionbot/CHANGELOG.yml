@@ -1,4 +1,22 @@
 - commits:
+    - subject: Allow bots to auto-approve PRs in environment-production
+      hash: 39febb9f86cb0a6d866d6aa773ae6e85e179b698
+      body: |
+        We use this so Renovate can conditionally automerge some packages,
+        like UI, directly to prod so merge=deploy.
+
+        The automerge rules are in the repo renovate config.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.13
+  title: ""
+  date: 2024-04-15T15:39:16.639Z
+- commits:
     - subject: Remove sync push workflow
       hash: 9121a96499ad1d2e24f1af7d9f145ac741dfbdc4
       body: |
