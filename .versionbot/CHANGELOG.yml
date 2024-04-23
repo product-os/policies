@@ -1,4 +1,18 @@
 - commits:
+    - subject: Add note to the readme to flag that policies have moved
+      hash: 34daa9521dc8694bde34734ec893c8746a75a126
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.7.14
+  title: ""
+  date: 2024-04-23T13:52:32.568Z
+- commits:
     - subject: Allow bots to auto-approve PRs in environment-production
       hash: 39febb9f86cb0a6d866d6aa773ae6e85e179b698
       body: |
