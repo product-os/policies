@@ -1,5 +1,8 @@
 # policies
 
+> [!NOTE]
+> Policies have been moved from here to the root of each Organization in the respective `.github` repos.
+
 Approval/disapproval policies for [policy-bot](https://github.com/palantir/policy-bot).
 
 > `policy-bot` is a [GitHub App](https://developer.github.com/apps/) for enforcing
